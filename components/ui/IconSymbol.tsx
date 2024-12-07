@@ -1,22 +1,31 @@
 // This file is a fallback for using MaterialIcons on Android and web.
 
-import { SymbolWeight } from 'expo-symbols';
-import React from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
-import { SvgXml } from "react-native-svg";
+import { AntDesign } from '@expo/vector-icons';
+import React, { ComponentProps } from 'react';
+import { StyleProp, TextStyle } from 'react-native';
 
 export function IconSymbol({
   size = 50,
   color,
   style,
-  svgMarkup,
+  name
 }: {
   size?: number;
   color: string ;
-  style?: StyleProp<ViewStyle>;
-  weight?: SymbolWeight;
-  svgMarkup: string;
+  style?: StyleProp<TextStyle>;
+  name:ComponentProps<typeof AntDesign>['name']
 }) {
-  const updatedSvgMarkup = svgMarkup.replace(/fill="[^"]*"/g, `fill="${color}"`);
-  return <SvgXml style={style} width={size} height={size} xml={updatedSvgMarkup} />;
+
+  return <AntDesign name={name} size={size} color={color} style={style}/>;
 }
+
+
+
+// import Ionicons from '@expo/vector-icons/Ionicons';
+// import { type IconProps } from '@expo/vector-icons/build/createIconSet';
+// import { type ComponentProps } from 'react';
+// import { AntDesign } from '@expo/vector-icons';
+
+// export function TabBarIcon({ style, ...rest }: IconProps<ComponentProps<typeof Ionicons>['name']>) {
+//   return <Ionicons size={28} style={[{ marginBottom: -3 }, style]} {...rest} />;
+// }

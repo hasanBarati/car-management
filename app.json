@@ -15,12 +15,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.hasanoi.carmanagement"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
+    },
+    "packagerOpts": {
+      "sourceExts": [
+        "js",
+        "jsx",
+        "svgx"
+      ],
+      "transformer": "node_modules/react-native-svg-transformer/index.js"
     },
     "plugins": [
       "expo-router",
@@ -32,10 +41,19 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6628a4e7-5a67-4cb6-b370-15c6bab3c7a0"
+      }
     }
   }
 }
