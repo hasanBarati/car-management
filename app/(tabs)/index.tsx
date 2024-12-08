@@ -9,15 +9,20 @@ import {
 import Notifications from "@/components/Notifications";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useNavigation, useRouter } from "expo-router";
+
+
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
+  const router=useRouter()
   const render = () => {
     return homeData.map((data) => (
-      <TouchableOpacity key={data.id} onPress={() => console.log("object")}>
+      <TouchableOpacity key={data.id} onPress={() =>router.push(data.url)}>
         <ThemedView key={data.id} style={[styles.cardContainer]}>
           <View style={styles.cardTextContainer}>
             <ThemedText style={[styles.cardTitle]} type="titleColor">
-              {data.title}zcxvx
+              {data.title}
             </ThemedText>
             <ThemedText style={[styles.cardTitle]}>{data.subtitle}</ThemedText>
           </View>
@@ -102,6 +107,7 @@ const homeData = [
     subtitle: "مشاهده آخرین وضعیت خودرو",
     image: require(`@/assets/images/ecu.jpg`),
     id: 1,
+
   },
   {
     title: "تاریخچه تعمیرات",
@@ -120,6 +126,7 @@ const homeData = [
     subtitle: "تعمیرات، تعویض، بیمه، تایر در کیلومتر 50 هزار",
     image: require(`@/assets/images/calendar.png`),
     id: 4,
+    url:"/reminders"
   },
   {
     title: "گزارشات مالی",
@@ -132,5 +139,6 @@ const homeData = [
     subtitle: "تعمیرات دوره ای انجام شده در کیلومتر 80 هزار",
     image: require(`@/assets/images/repaire.jpg`),
     id: 6,
+        url:"/(pages)/services"
   },
 ];

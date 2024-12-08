@@ -1,7 +1,4 @@
-import {
-  DarkTheme,
-  ThemeProvider
-} from "@react-navigation/native";
+import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -30,21 +27,23 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-  console.log("colorScheme", colorScheme);
+
   return (
-    <SafeAreaView
-      style={styles.safeArea}
-      >
-      <StatusBar backgroundColor={"black"} translucent={true}/>
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar backgroundColor={"black"} translucent={true} />
       {/* <ScrollView> */}
-        {/* <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}> */}
-        <ThemeProvider value={DarkTheme}>
-          <Stack>
-            <Stack.Screen name="(header)" options={{ headerShown: true ,  gestureEnabled: true,}} />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </ThemeProvider>
+      {/* <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}> */}
+      <ThemeProvider value={DarkTheme}>
+      <Stack
+          screenOptions={{
+            headerShown: false, // Disable individual headers for screens
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(pages)" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </ThemeProvider>
       {/* </ScrollView> */}
     </SafeAreaView>
   );
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    backgroundColor: 'black', // Match this to the app's background
+    backgroundColor: "black", // Match this to the app's background
     paddingTop: StatusBar.currentHeight, // Ensure content starts after the StatusBar
   },
 });

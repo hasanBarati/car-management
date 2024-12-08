@@ -45,7 +45,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="profile"
         options={{
           title: "پروفایل",
           tabBarIcon: ({ color }) => (
@@ -54,7 +54,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore2"
+        name="support"
         options={{
           title: "پشتیبانی",
           tabBarIcon: ({ color }) => (
