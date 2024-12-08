@@ -7,10 +7,10 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 
 export default function PagesLayout() {
   return (
-    <SafeAreaView>
-      <Stack>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="reminders" />
-        <Stack.Screen name="services" options={{ headerShown: false }} />
+        <Stack.Screen name="services" />
       </Stack>
     </SafeAreaView>
   );
