@@ -19,7 +19,7 @@ export default function HomeScreen() {
   const render = () => {
     return homeData.map((data) => (
       <TouchableOpacity key={data.id} onPress={() =>router.push(data.url)}>
-        <ThemedView key={data.id} style={[styles.cardContainer]}>
+        <ThemedView  style={[styles.cardContainer]}>
           <View style={styles.cardTextContainer}>
             <ThemedText style={[styles.cardTitle]} type="titleColor">
               {data.title}

@@ -7,6 +7,7 @@ const Notifications = () => {
   const render = () => {
     return carStatus.map((status) => (
       <View
+        key={status.id}
         style={[styles.statusCard, { backgroundColor: status.color }]}
       >
         <View style={styles.statusTextContainer}>
@@ -50,9 +51,9 @@ const styles = StyleSheet.create({
 export default Notifications;
 
 const carStatus = [
-  { name: "دور موتور", color: "green", content: "2000 RPM" },
-  { name: "باتری", color: "red", content: "نیاز به شارژ" },
-  { name: "دما", color: "green", content: "80 درجه" },
-  { name: "بیمه نامه", color: "orange", content: "انقضا 5 روز" },
-  { name: "ترمز ها", color: "green", content: "مناسب" },
+  { name: "دور موتور", color: "green", content: "2000 RPM",id:1 },
+  { name: "باتری", color: "red", content: "نیاز به شارژ" ,id:2},
+  { name: "دما", color: "green", content: "80 درجه" ,id:3},
+  { name: "بیمه نامه", color: "orange", content: "انقضا 5 روز",id:4 },
+  { name: "ترمز ها", color: "green", content: "مناسب" ,id:5},
 ];
