@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import StatusCard from "../cards/StatusCard";
+import { IconSymbol } from "@/components/ui/IconSymbol";
 
 const data = [
   {
@@ -33,24 +35,24 @@ const RemindersContent = () => {
   const RenderItem = ({ item }) => {
     return (
       <View style={styles.card}>
-        <View style={styles.cardHeader}>
-          <View style={styles.cardHeader}>
-            <View style={[styles.indicator, { backgroundColor: item.color }]} />
-            <ThemedText type="titleColor">{item.title}</ThemedText>
-          </View>
-          <View>
-            <Text>delete</Text>
-            <Text>edit</Text>
-          </View>
+      <View style={styles.cardHeader}>
+        <View style={styles.cardHeaderDetail}>
+          <View style={[styles.indicator, { backgroundColor: item.color }]} />
+          <ThemedText type="titleColor">{item.title}</ThemedText>
         </View>
-        <View style={styles.cardContent}>
-          <Text style={styles.cardText}>تاریخ سر رسید: {item.date}</Text>
-          <Text style={styles.cardText}>
-            کیلومتر باقی مانده: {item.remaining}
-          </Text>
-          <Text style={styles.cardText}>وضعیت یادآور: {item.status}</Text>
+        <View style={styles.cardHeaderDetail}>
+          <IconSymbol name="delete" size={24} color="white" />
+          <IconSymbol size={25} name="edit" color='white' />
         </View>
       </View>
+      <View style={styles.cardContent}>
+        <Text style={styles.cardText}>تاریخ سر رسید: {item.date}</Text>
+        <Text style={styles.cardText}>
+          کیلومتر باقی مانده: {item.remaining}
+        </Text>
+        <Text style={styles.cardText}>وضعیت یادآور: {item.status}</Text>
+      </View>
+    </View>
     );
   };
 
@@ -91,10 +93,11 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
-    margin: 16,
+    // marginBottom: 16,
+    marginVertical: 20,
     borderRadius: 8,
     backgroundColor: "#444",
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     height: 50,
   },
   searchInput: {
@@ -117,14 +120,20 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
     position: "relative",
-    direction:"rtl"
+    direction: "rtl",
   },
   cardHeader: {
-
     flexDirection: "row",
     alignItems: "center",
-    justifyContent:"space-between",
-    marginBottom: 8,
+    justifyContent: "space-between",
+   
+  },
+  cardHeaderDetail: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap:4
+
   },
   indicator: {
     width: 12,
@@ -138,12 +147,20 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   cardContent: {
-    marginBottom: 8,
+    marginVertical: 8,
+
+    flexDirection:"row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    // width:500
   },
   cardText: {
     fontSize: 14,
     color: "#aaa",
     marginBottom: 4,
+
+    width:"48%"
+
   },
   cardActions: {
     flexDirection: "row",

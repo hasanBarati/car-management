@@ -11,7 +11,7 @@ export function IconSymbol({
   name
 }: {
   size?: number;
-  color: string ;
+  color?: string ;
   style?: StyleProp<TextStyle>;
   name:ComponentProps<typeof AntDesign>['name']
 }) {
