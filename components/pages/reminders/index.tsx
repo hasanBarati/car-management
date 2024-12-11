@@ -8,6 +8,7 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from "react-native";
 import StatusCard from "../cards/StatusCard";
 import { IconSymbol } from "@/components/ui/IconSymbol";
@@ -29,44 +30,63 @@ const data = [
     remaining: "5km",
     color: "red",
   },
+  {
+    id: "3",
+    title: "تعویض روغن",
+    date: "104/12/10",
+    status: "فعال",
+    remaining: "5km",
+    color: "orange",
+  },
+  {
+    id: "4",
+    title: "تعویض لنت جلو",
+    date: "104/12/10",
+    status: "فعال",
+    remaining: "5km",
+    color: "red",
+  },
+  {
+    id: "5",
+    title: "تعویض روغن",
+    date: "104/12/10",
+    status: "فعال",
+    remaining: "5km",
+    color: "orange",
+  },
+  {
+    id: "6",
+    title: "تعویض لنت جلو",
+    date: "104/12/10",
+    status: "فعال",
+    remaining: "5km",
+    color: "red",
+  },
 ];
 
 const RemindersContent = () => {
   const RenderItem = ({ item }) => {
     return (
-      <View style={styles.card}>
-      <View style={styles.cardHeader}>
-        <View style={styles.cardHeaderDetail}>
-          <View style={[styles.indicator, { backgroundColor: item.color }]} />
-          <ThemedText type="titleColor">{item.title}</ThemedText>
-        </View>
-        <View style={styles.cardHeaderDetail}>
-          <IconSymbol name="delete" size={24} color="white" />
-          <IconSymbol size={25} name="edit" color='white' />
-        </View>
-      </View>
-      <View style={styles.cardContent}>
-        <Text style={styles.cardText}>تاریخ سر رسید: {item.date}</Text>
-        <Text style={styles.cardText}>
-          کیلومتر باقی مانده: {item.remaining}
-        </Text>
-        <Text style={styles.cardText}>وضعیت یادآور: {item.status}</Text>
-      </View>
-    </View>
+       <StatusCard item={item}/>
     );
   };
 
   return (
+
     <View style={styles.container}>
       <View style={styles.searchBar}>
+        <TouchableOpacity style={styles.searchIcon}>
+          <IconSymbol name="search1" size={30} color="#ffffff"  />
+        </TouchableOpacity>
         <TextInput
           style={styles.searchInput}
           placeholder="جستجو بر اساس وضعیت، تاریخ و عنوان"
           placeholderTextColor="#888"
+          textAlign="right"
+          showSoftInputOnFocus
+          inputMode="text"
+          keyboardType="default"
         />
-        <TouchableOpacity style={styles.searchIcon}>
-          <Text>🔍</Text>
-        </TouchableOpacity>
       </View>
 
       <View style={styles.cardContainer}>
@@ -74,8 +94,10 @@ const RemindersContent = () => {
           data={data}
           renderItem={({ item }) => <RenderItem item={item} />}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={{ paddingBottom: 100 }}
-          style={{ flex: 1 }}
+          contentContainerStyle={{ paddingBottom: 50 }}
+  
+
+          
         />
       </View>
 
@@ -83,12 +105,14 @@ const RemindersContent = () => {
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>
+
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal:5
   },
   searchBar: {
     flexDirection: "row",
@@ -113,6 +137,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     height: "auto",
+    flex:1
   },
   card: {
     backgroundColor: "#333",

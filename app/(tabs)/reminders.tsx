@@ -9,13 +9,7 @@ import PageContent from "@/components/pages/content";
 const Reminders = () => {
   return (
     <>
-        <PagesHeader
-          image={require("@/assets/images/repaire.jpg")}
-          title={"یادآورها"}
-        />
-        <PageContent>
-          <RemindersContent />
-        </PageContent>
+      <RemindersContent />
     </>
   );
 };

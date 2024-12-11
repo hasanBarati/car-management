@@ -12,6 +12,7 @@ import { ThemedText } from "../../ThemedText";
 import Logo from "@/assets/icons/logo";
 import Back from "@/assets/icons/back";
 import { ThemedView } from "../../ThemedView";
+import { useNavigation } from "expo-router";
 
 const PagesHeader = ({
   image,
@@ -20,16 +21,17 @@ const PagesHeader = ({
   image: ImageSourcePropType;
   title: string;
 }) => {
+  const navigation=useNavigation()
   return (
     <ImageBackground
-      source={image} // Replace with your image URL
+      source={image} 
       style={styles.background}
       resizeMode="cover"
     >
       <ThemedView style={styles.cover}></ThemedView>
       <View style={styles.container}>
         <TouchableOpacity style={styles.leftIcon}>
-          <Back />
+          <Back onPress={()=>navigation.goBack()}/>
         </TouchableOpacity>
         <ThemedText style={styles.title} type="subtitle">
           {title}

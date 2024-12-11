@@ -1,6 +1,7 @@
 import Logo from "@/assets/icons/logo";
 import { HapticTab } from "@/components/HapticTab";
 import Header from "@/components/Header";
+import PagesHeader from "@/components/pages/header/PagesHeader";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors, tintColorLight } from "@/constants/Colors";
@@ -17,9 +18,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerStyle: { backgroundColor: "#4caf50" },
-        header: () => (
-          <Header/>
-        ), // Add a button to the header
+        header: () => <Header />, // Add a button to the header
         tabBarInactiveTintColor: "#fff",
         tabBarActiveTintColor: tintColorLight,
         // tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
@@ -53,6 +52,7 @@ export default function TabLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
         name="support"
         options={{
@@ -68,6 +68,18 @@ export default function TabLayout() {
           title: "تنظیمات",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={25} name="setting" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="reminders"
+        options={{
+          href: null,
+          header: () => (
+            <PagesHeader
+              image={require("@/assets/images/repaire.jpg")}
+              title={"یادآورها"}
+            />
           ),
         }}
       />

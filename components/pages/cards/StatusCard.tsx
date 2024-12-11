@@ -14,8 +14,8 @@ const StatusCard = ({item}) => {
         <ThemedText type="titleColor">{item.title}</ThemedText>
       </View>
       <View style={styles.cardHeaderDetail}>
-        <IconSymbol name="delete" size={24} color="white" />
-        <IconSymbol size={25} name="edit" color='white' />
+        <IconSymbol name="delete" size={18} color="white" />
+        <IconSymbol size={18} name="edit" color='white' />
       </View>
     </View>
     <View style={styles.cardContent}>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      gap:4
+      gap:6
   
     },
     indicator: {
