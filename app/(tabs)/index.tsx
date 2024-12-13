@@ -9,12 +9,12 @@ import {
 import Notifications from "@/components/Notifications";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { useNavigation, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
+
   const router=useRouter()
   const render = () => {
     return homeData.map((data) => (
@@ -126,7 +126,7 @@ const homeData = [
     subtitle: "تعمیرات، تعویض، بیمه، تایر در کیلومتر 50 هزار",
     image: require(`@/assets/images/calendar.png`),
     id: 4,
-    url:"/reminders"
+    url:"/(reminders)"
   },
   {
     title: "گزارشات مالی",

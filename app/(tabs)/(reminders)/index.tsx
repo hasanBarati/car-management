@@ -10,8 +10,10 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import StatusCard from "../cards/StatusCard";
+
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import { useRouter } from "expo-router";
+import StatusCard from "@/components/pages/cards/StatusCard";
 
 const data = [
   {
@@ -64,19 +66,16 @@ const data = [
   },
 ];
 
-const RemindersContent = () => {
+const Reminders = () => {
   const RenderItem = ({ item }) => {
-    return (
-       <StatusCard item={item}/>
-    );
+    return <StatusCard item={item} />; 
   };
-
+  const router=useRouter()
   return (
-
     <View style={styles.container}>
       <View style={styles.searchBar}>
         <TouchableOpacity style={styles.searchIcon}>
-          <IconSymbol name="search1" size={30} color="#ffffff"  />
+          <IconSymbol name="search1" size={30} color="#ffffff" />
         </TouchableOpacity>
         <TextInput
           style={styles.searchInput}
@@ -95,24 +94,20 @@ const RemindersContent = () => {
           renderItem={({ item }) => <RenderItem item={item} />}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{ paddingBottom: 50 }}
-  
-
-          
         />
       </View>
 
-      <TouchableOpacity style={styles.fab}>
+      <TouchableOpacity style={styles.fab} onPress={()=>router.push("/add")}>
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>
-
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal:5
+    paddingHorizontal:14,
   },
   searchBar: {
     flexDirection: "row",
@@ -137,7 +132,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     height: "auto",
-    flex:1
+    flex: 1,
   },
   card: {
     backgroundColor: "#333",
@@ -151,14 +146,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-   
   },
   cardHeaderDetail: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    gap:4
-
+    gap: 4,
   },
   indicator: {
     width: 12,
@@ -174,7 +167,7 @@ const styles = StyleSheet.create({
   cardContent: {
     marginVertical: 8,
 
-    flexDirection:"row",
+    flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
     // width:500
@@ -184,8 +177,7 @@ const styles = StyleSheet.create({
     color: "#aaa",
     marginBottom: 4,
 
-    width:"48%"
-
+    width: "48%",
   },
   cardActions: {
     flexDirection: "row",
@@ -220,4 +212,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RemindersContent;
+export default Reminders;

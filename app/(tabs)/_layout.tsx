@@ -72,7 +72,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="reminders"
+        name="(reminders)/index"
         options={{
           href: null,
           header: () => (
@@ -82,6 +82,20 @@ export default function TabLayout() {
             />
           ),
         }}
+
+      />
+      <Tabs.Screen
+        name="(reminders)/add"
+        options={{
+          href: null,
+          header: () => (
+            <PagesHeader
+              image={require("@/assets/images/repaire.jpg")}
+              title={"ثبت یادآور"}
+            />
+          ),
+        }}
+
       />
     </Tabs>
   );

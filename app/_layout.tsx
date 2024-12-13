@@ -39,8 +39,8 @@ export default function RootLayout() {
             headerShown: false, // Disable individual headers for screens
           }}
         >
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(pages)" options={{ headerShown: false }} />
+          {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
+          {/* <Stack.Screen name="(pages)" options={{ headerShown: false }} /> */}
           <Stack.Screen name="+not-found" />
         </Stack>
       </ThemeProvider>
