@@ -1,7 +1,7 @@
 import Logo from "@/assets/icons/logo";
 import { HapticTab } from "@/components/HapticTab";
 import Header from "@/components/Header";
-import PagesHeader from "@/components/pages/header/PagesHeader";
+import PagesHeader from "@/components/PagesHeader";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors, tintColorLight } from "@/constants/Colors";
@@ -82,7 +82,6 @@ export default function TabLayout() {
             />
           ),
         }}
-
       />
       <Tabs.Screen
         name="(reminders)/add"
@@ -95,7 +94,6 @@ export default function TabLayout() {
             />
           ),
         }}
-
       />
     </Tabs>
   );

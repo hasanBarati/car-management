@@ -1,18 +1,16 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ImageBackground,
-  TouchableOpacity,
-  Image,
-  ImageSourcePropType,
-} from "react-native";
-import React from "react";
-import { ThemedText } from "../../ThemedText";
-import Logo from "@/assets/icons/logo";
 import Back from "@/assets/icons/back";
-import { ThemedView } from "../../ThemedView";
+import Logo from "@/assets/icons/logo";
 import { useNavigation } from "expo-router";
+import React from "react";
+import {
+  ImageBackground,
+  ImageSourcePropType,
+  StyleSheet,
+  TouchableOpacity,
+  View
+} from "react-native";
+import { ThemedText } from "./ThemedText";
+import { ThemedView } from "./ThemedView";
 
 const PagesHeader = ({
   image,
@@ -21,17 +19,17 @@ const PagesHeader = ({
   image: ImageSourcePropType;
   title: string;
 }) => {
-  const navigation=useNavigation()
+  const navigation = useNavigation();
   return (
     <ImageBackground
-      source={image} 
+      source={image}
       style={styles.background}
       resizeMode="cover"
     >
       <ThemedView style={styles.cover}></ThemedView>
       <View style={styles.container}>
         <TouchableOpacity style={styles.leftIcon}>
-          <Back onPress={()=>navigation.goBack()}/>
+          <Back onPress={() => navigation.goBack()} />
         </TouchableOpacity>
         <ThemedText style={styles.title} type="subtitle">
           {title}

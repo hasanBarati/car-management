@@ -5,20 +5,16 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
 import Notifications from "@/components/Notifications";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { useRouter } from "expo-router";
-
-
+import { Href, useRouter } from "expo-router";
 
 export default function HomeScreen() {
-
   const router=useRouter()
   const render = () => {
     return homeData.map((data) => (
-      <TouchableOpacity key={data.id} onPress={() =>router.push(data.url)}>
+      <TouchableOpacity key={data.id} onPress={() =>router.push(data.url as Href)}>
         <ThemedView  style={[styles.cardContainer]}>
           <View style={styles.cardTextContainer}>
             <ThemedText style={[styles.cardTitle]} type="titleColor">
@@ -29,13 +25,7 @@ export default function HomeScreen() {
 
           <Image
             source={data.image}
-            style={{
-              alignSelf: "center",
-              width: "100%",
-              height: "100%",
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
-            }}
+            style={styles.cardImage}
           />
         </ThemedView>
       </TouchableOpacity>
@@ -45,10 +35,7 @@ export default function HomeScreen() {
     <ScrollView style={{ marginBottom: 20, paddingBottom: 182 }}>
       <View>
         <Notifications />
-        {/* <ThemedText darkColor={'red'} lightColor={'red'} type="subtitle" >Step 1: Try it</ThemedText> */}
-        <ThemedView style={styles.card}>
-          {/* <ThemedText type="title">Welcomvve!</ThemedText> */}
-          {/* <HelloWave /> */}
+        <ThemedView style={styles.card}>       
           {render()}
         </ThemedView>
       </View>
@@ -82,6 +69,13 @@ const styles = StyleSheet.create({
   },
   cardTextContainer: {
     padding: 10,
+  },
+  cardImage:{
+    alignSelf: "center",
+    width: "100%",
+    height: "100%",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   titleContainer: {
     flexDirection: "row",

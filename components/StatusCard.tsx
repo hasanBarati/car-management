@@ -2,11 +2,11 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { MaintenanceItem } from '@/types/ndex';
 
-const StatusCard = ({item}) => {
+
+const StatusCard = ({item}:{item:MaintenanceItem}) => {
   return (
-
-    
     <View style={styles.card}>
     <View style={styles.cardHeader}>
       <View style={styles.cardHeaderDetail}>
