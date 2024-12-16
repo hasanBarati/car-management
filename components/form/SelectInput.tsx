@@ -1,8 +1,10 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Controller } from "react-hook-form";
-import RNPickerSelect from "react-native-picker-select";
 import { tintColorDark } from "@/constants/Colors";
+import React from "react";
+import { Controller } from "react-hook-form";
+import { StyleSheet, Text, View } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
+
+
 
 interface SelectInputFieldProps {
   control: any;
@@ -28,6 +30,7 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
       rules={rules}
       render={({ field: { onChange, value } }) => (
         <RNPickerSelect
+          useNativeAndroidPickerStyle={false}
           onValueChange={(val) => onChange(val)}
           items={items}
           style={{
@@ -47,9 +50,12 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: "#444",
     color: tintColorDark,
-    // padding: 4,
-    borderRadius: 16,
-    marginBottom: 10,
+    borderRadius: 10,
+    height:45, 
+    paddingHorizontal: 10, 
+    justifyContent: "center", 
+    marginBottom: 10, 
+    fontFamily: "IranSans",
   },
   errorInput: { borderColor: "red", borderWidth: 1 },
   errorText: { color: "red", fontSize: 12, marginBottom: 10 },

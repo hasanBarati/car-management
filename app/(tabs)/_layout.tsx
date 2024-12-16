@@ -23,6 +23,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: tintColorLight,
         // tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         // headerShown: false,
+
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({

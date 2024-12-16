@@ -1,6 +1,5 @@
-import Logo from "@/assets/icons/logo";
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { ThemedText } from "./ThemedText";
 
 const Notifications = () => {
@@ -39,7 +38,8 @@ const styles = StyleSheet.create({
     display:"flex",
     justifyContent:"center",
     alignItems:"center",
-    alignContent:"center"
+    alignContent:"center",
+    height:"100%"
   },
   statusCard: {
     width: 120,

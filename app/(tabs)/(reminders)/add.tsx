@@ -35,7 +35,7 @@ const ReminderForm = () => {
   const onSubmit = (data: any) => {
     console.log("Form Data:", data);
   };
-  console.log(errors);
+
   return (
     <ScrollView style={styles.container}>
       {/* Title Input */}

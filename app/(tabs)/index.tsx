@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     textAlign: "center",
+    marginBottom:5
   },
   cardTextContainer: {
     padding: 10,
@@ -77,22 +78,9 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
-  },
+
+
+
 });
 
 const homeData = [

@@ -31,7 +31,7 @@ const PagesHeader = ({
         <TouchableOpacity style={styles.leftIcon}>
           <Back onPress={() => navigation.goBack()} />
         </TouchableOpacity>
-        <ThemedText style={styles.title} type="subtitle">
+        <ThemedText style={styles.title} type="title">
           {title}
         </ThemedText>
         <TouchableOpacity style={styles.rightIcon}>

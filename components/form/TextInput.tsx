@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     marginBottom: 10,
-    textAlign:"right"
+    textAlign:"right",
+    fontFamily: "IranSans",
   },
   errorInput: { borderColor: "red", borderWidth: 1 },
   errorText: { color: "red", fontSize: 12, marginBottom: 10 },

@@ -1,9 +1,12 @@
+import { tintColorDark, tintColorLight } from "@/constants/Colors";
 import React from "react";
-import { View, Text, StyleSheet, Switch } from "react-native";
 import { Controller } from "react-hook-form";
+import { StyleSheet, Switch, Text, View } from "react-native";
+import { ThemedText } from "../ThemedText";
+
 
 interface SwitchInputFieldProps {
-  control: any;
+  control:any;
   name: string;
   label: string;
   defaultValue?: boolean;
@@ -21,10 +24,15 @@ const SwitchInputField: React.FC<SwitchInputFieldProps> = ({
       control={control}
       defaultValue={defaultValue}
       render={({ field: { onChange, value } }) => (
-        <Switch value={value} onValueChange={onChange} />
+        <Switch
+          value={value}
+          onValueChange={onChange}
+          thumbColor={value ? tintColorDark : tintColorLight} 
+          trackColor={{ false: tintColorDark, true: tintColorDark }}
+        />
       )}
     />
-    <Text style={styles.label}>{label}</Text>
+    <ThemedText style={styles.label}>{label}</ThemedText>
   </View>
 );
 
