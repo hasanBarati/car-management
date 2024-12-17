@@ -1,7 +1,7 @@
 import React from "react";
 import { View, TextInput, Text, StyleSheet } from "react-native";
 import { Controller } from "react-hook-form";
-import { tintColorDark } from "@/constants/Colors";
+import { plcaholderColor, tintColorDark } from "@/constants/Colors";
 
 interface TextInputFieldProps {
   control: any;
@@ -9,7 +9,15 @@ interface TextInputFieldProps {
   placeholder: string;
   rules?: object;
   errorMessage?: string;
-  inputMode?:'decimal'| 'email'| 'none'| 'numeric'| 'search'| 'tel'| 'text'| 'url'
+  inputMode?:
+    | "decimal"
+    | "email"
+    | "none"
+    | "numeric"
+    | "search"
+    | "tel"
+    | "text"
+    | "url";
 }
 
 const TextInputField: React.FC<TextInputFieldProps> = ({
@@ -18,28 +26,34 @@ const TextInputField: React.FC<TextInputFieldProps> = ({
   placeholder,
   rules = {},
   errorMessage,
-  inputMode="none"
-}) => (
-  <View>
-    <Controller
-      name={name}
-      control={control}
-      rules={rules}
-      render={({ field: { onChange, onBlur, value } }) => (
-        <TextInput
-          style={[styles.input, errorMessage && styles.errorInput]}
-          placeholder={placeholder}
-          placeholderTextColor="#fff"
-          onBlur={onBlur}
-          onChangeText={onChange}
-          value={value}
-          inputMode={inputMode}
-        />
-      )}
-    />
-    {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
-  </View>
-);
+  inputMode = "none",
+}) => {
+
+  return (
+    <View>
+      <Controller
+        name={name}
+        control={control}
+        rules={rules}
+        render={({ field: { onChange, onBlur, value } }) => {
+          console.log(name,value)
+          return (
+            <TextInput
+              style={[styles.input, errorMessage && styles.errorInput]}
+              placeholder={placeholder}
+              placeholderTextColor={plcaholderColor}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              inputMode={inputMode}
+            />
+          );
+        }}
+      />
+      {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   input: {
@@ -48,7 +62,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     marginBottom: 10,
-    textAlign:"right",
+    textAlign: "right",
     fontFamily: "IranSans",
   },
   errorInput: { borderColor: "red", borderWidth: 1 },

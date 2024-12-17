@@ -5,6 +5,7 @@
 
 export const tintColorLight = '#0FB900';
 export const tintColorDark = '#fff';
+export const plcaholderColor = '#888';
 
 export const Colors = {
   cotainer:{

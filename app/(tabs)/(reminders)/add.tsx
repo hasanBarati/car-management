@@ -6,11 +6,7 @@ import TextInputField from "@/components/form/TextInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-  ScrollView,
-  StyleSheet,
-  View
-} from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 
 // Validation schema using Yup
@@ -28,6 +24,7 @@ const ReminderForm = () => {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -38,8 +35,6 @@ const ReminderForm = () => {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Title Input */}
-
       <TextInputField
         control={control}
         name="title"
@@ -52,25 +47,33 @@ const ReminderForm = () => {
         name="type"
         placeholder="نوع یادآور"
         items={[
-          { label: "نوع 1", value: "type1" },
-          { label: "نوع 2", value: "type2" },
+          { label: "سرویس دوره ای", value: "type1" },
+          { label: "تعمیر", value: "type2" },
+          { label: "بیمه", value: "type3" },
+          { label: "معاینه فنی", value: "type4" },
         ]}
         errorMessage={errors.type?.message}
       />
 
-      <TextInputField
+      {/* <TextInputField
         control={control}
         name="date"
         placeholder="تاریخ سررسید"
-        errorMessage={errors.title?.message}
-      />
+        errorMessage={errors.date?.message}
+      /> */}
 
-      <CustomDatePicker/>
+      <CustomDatePicker
+        control={control}
+        name="date"
+        placeholder=""
+        errorMessage={errors.date?.message}
+  
+      />
       <TextInputField
         control={control}
-        name="numeric"
+        name="mileage"
         placeholder="کیلومتر خودرو"
-        errorMessage={errors.title?.message}
+        errorMessage={errors.mileage?.message}
         inputMode="numeric"
       />
 
@@ -89,7 +92,7 @@ const ReminderForm = () => {
         <CustomButton
           text="لغو"
           type="secondaryButton"
-          onPress={() => console.log("object")}
+          onPress={() => reset()} // Reset form manually if needed
         />
       </View>
     </ScrollView>
@@ -97,15 +100,12 @@ const ReminderForm = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 14, flex: 1,marginTop:20 },
-
+  container: { padding: 14, flex: 1, marginTop: 20 },
   buttonRow: {
     flexDirection: "row",
-    // justifyContent: "space-between",
-    gap:10,
+    gap: 10,
     marginTop: 20,
   },
-
 });
 
 export default ReminderForm;

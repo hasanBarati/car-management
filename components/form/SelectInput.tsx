@@ -1,4 +1,4 @@
-import { tintColorDark } from "@/constants/Colors";
+import { plcaholderColor, tintColorDark } from "@/constants/Colors";
 import React from "react";
 import { Controller } from "react-hook-form";
 import { StyleSheet, Text, View } from "react-native";
@@ -35,7 +35,7 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
           items={items}
           style={{
             inputAndroid: [styles.input, errorMessage && styles.errorInput],
-            placeholder: { color: "#fff" },
+            placeholder: { color: plcaholderColor },
           }}
           placeholder={{ label: placeholder, value: null }}
           value={value}

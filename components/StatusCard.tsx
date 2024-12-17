@@ -3,8 +3,10 @@ import React from "react";
 import { ThemedText } from "@/components/ThemedText";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { MaintenanceItem } from "@/types/ndex";
+import { useRouter } from "expo-router";
 
 const StatusCard = ({ item }: { item: MaintenanceItem }) => {
+  const router=useRouter()
   return (
     <View style={styles.card}>
       <View style={styles.cardHeader}>
@@ -14,7 +16,7 @@ const StatusCard = ({ item }: { item: MaintenanceItem }) => {
         </View>
         <View style={styles.cardHeaderDetail}>
           <IconSymbol name="delete" size={18} color="white" />
-          <TouchableHighlight onPress={() => console.log(item)}>
+          <TouchableHighlight onPress={() => router.push({pathname:"/add",params:item})}>
             <IconSymbol size={18} name="edit" color="white" />
           </TouchableHighlight>
         </View>
