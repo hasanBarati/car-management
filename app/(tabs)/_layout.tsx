@@ -96,6 +96,30 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="repaire/index"
+        options={{
+          href: null,
+          header: () => (
+            <PagesHeader
+              image={require("@/assets/images/repaire.jpg")}
+              title={"تاریخچه تعمیرات "}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="repaire/add"
+        options={{
+          href: null,
+          header: () => (
+            <PagesHeader
+              image={require("@/assets/images/repaire.jpg")}
+              title={"ثبت تعمیرات "}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

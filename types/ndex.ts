@@ -6,4 +6,11 @@ export type MaintenanceItem = {
     remaining: string;
     color: string;
   };
-
+  export type CarRepairHistory= {
+    id:number,
+    title: string;         
+    date: string;       
+    reason: string;      
+    cost: number;         
+    description: string;    
+  }

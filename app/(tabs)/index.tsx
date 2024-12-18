@@ -96,6 +96,7 @@ const homeData = [
     subtitle: "تعمیرات انجام شده در کیلومتر 23 هزار",
     image: require(`@/assets/images/repaire.jpg`),
     id: 2,
+    url:"/repaire"
   },
   {
     title: "مسیرهای طی شده",
