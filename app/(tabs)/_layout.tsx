@@ -110,12 +110,24 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="repaire/add"
-        options={{
+        options={{ 
           href: null,
           header: () => (
             <PagesHeader
               image={require("@/assets/images/repaire.jpg")}
               title={"ثبت تعمیرات "}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="repaire/add-reapire-locataion"
+        options={{
+          href: null,
+          header: () => (
+            <PagesHeader
+              image={require("@/assets/images/repaire.jpg")}
+              title={"ذخیره تعمیرگاه "}
             />
           ),
         }}

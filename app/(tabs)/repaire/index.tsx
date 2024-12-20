@@ -19,6 +19,7 @@ const RepaireHistory = () => {
   const router = useRouter();
   return (
     <View style={styles.container}>
+      
       <SearchInput />
       <View style={styles.cardContainer}>
         <FlatList
@@ -74,6 +75,7 @@ const carRepairHistoryData: CarRepairHistory[] = [
     date: "104/12/10",
     reason: "بالا رفتن غیرعادی دمای موتور",
     cost: 400000,
+    brand:"M-CO",
     description:
       "باز کردن پیچ‌های سرسیلندر، تمیز کردن سطح سیلندرها و بلوک موتور، نصب واشرهای جدید، تست و بررسی موتور",
   },
@@ -82,6 +84,7 @@ const carRepairHistoryData: CarRepairHistory[] = [
     title: "تعویض لنت ترمز",
     date: "104/11/20",
     reason: "کاهش عملکرد ترمز و صدای غیرعادی",
+    brand:"بوش",
     cost: 300000,
     description:
       "تعویض لنت‌های ترمز جلو و عقب، بررسی دیسک ترمزها و تنظیم مجدد سیستم ترمز",
@@ -92,6 +95,7 @@ const carRepairHistoryData: CarRepairHistory[] = [
     date: "104/10/15",
     reason: "سرویس دوره‌ای جهت نگهداری بهتر",
     cost: 600000,
+    brand:"زیمنس",
     description:
       "تعویض روغن موتور، فیلتر هوا، فیلتر روغن، بررسی سیستم تعلیق و ترمزها",
   },
@@ -101,6 +105,7 @@ const carRepairHistoryData: CarRepairHistory[] = [
     date: "104/09/25",
     reason: "پارگی جزئی تسمه تایم",
     cost: 500000,
+    brand:"زیمنس",
     description:
       "باز کردن تسمه قدیمی و نصب تسمه تایم جدید، بررسی وضعیت پولی‌ها و بلبرینگ‌ها",
   },

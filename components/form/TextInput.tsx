@@ -18,6 +18,8 @@ interface TextInputFieldProps {
     | "tel"
     | "text"
     | "url";
+    multiline?: boolean;
+    numberOfLines?: number;
 }
 
 const TextInputField: React.FC<TextInputFieldProps> = ({
@@ -27,6 +29,8 @@ const TextInputField: React.FC<TextInputFieldProps> = ({
   rules = {},
   errorMessage,
   inputMode = "none",
+  multiline,
+  numberOfLines
 }) => {
 
   return (
@@ -36,16 +40,17 @@ const TextInputField: React.FC<TextInputFieldProps> = ({
         control={control}
         rules={rules}
         render={({ field: { onChange, onBlur, value } }) => {
-          console.log(name,value)
           return (
             <TextInput
-              style={[styles.input, errorMessage && styles.errorInput]}
+              style={[styles.input, errorMessage && styles.errorInput,multiline && styles.textArea]}
               placeholder={placeholder}
               placeholderTextColor={plcaholderColor}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
               inputMode={inputMode}
+              multiline={multiline}
+              numberOfLines={numberOfLines}
             />
           );
         }}
@@ -61,9 +66,13 @@ const styles = StyleSheet.create({
     color: tintColorDark,
     padding: 12,
     borderRadius: 8,
-    marginBottom: 10,
+    marginBottom: 12,
     textAlign: "right",
     fontFamily: "IranSans",
+  },
+  textArea: {
+    height: 100,
+    textAlignVertical: "top", 
   },
   errorInput: { borderColor: "red", borderWidth: 1 },
   errorText: { color: "red", fontSize: 12, marginBottom: 10 },

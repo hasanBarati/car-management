@@ -77,6 +77,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 8,
     backgroundColor: "#444",
+    marginTop:0,
+    marginBottom:12
 
   },
   icon: {

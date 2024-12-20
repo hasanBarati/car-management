@@ -17,7 +17,7 @@ const RepaireCard = ({ item }: { item: CarRepairHistory }) => {
         </View>
         <View style={styles.cardHeaderDetail}>
           <IconSymbol name="delete" size={18} color="white" />
-          <TouchableHighlight onPress={() => router.push({pathname:"/add",params:item})}>
+          <TouchableHighlight onPress={() => router.push({pathname:"/repaire/add",params:item})}>
             <IconSymbol size={18} name="edit" color="white" />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => router.push({pathname:"/add",params:item})}>

@@ -7,10 +7,11 @@ export type MaintenanceItem = {
     color: string;
   };
   export type CarRepairHistory= {
-    id:number,
+    id?:number,
     title: string;         
-    date: string;       
-    reason: string;      
+    date?: string;       
+    reason?: string;      
     cost: number;         
     description: string;    
+    brand?:string
   }

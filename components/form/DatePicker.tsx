@@ -29,6 +29,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
       render={({ field: { onChange, value } }) => (
         <View style={styles.calendarContainer}>
           <DatePicker
+          
             value={value}
             onChange={(val) => onChange(val)}
             // style={styles.calendar}
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     height: 45,
     paddingHorizontal: 10,
     justifyContent: "center",
-    marginBottom: 10,
+    marginBottom: 12,
     fontFamily: "IranSans",
   },
   calendar: {

@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     height:45, 
     paddingHorizontal: 10, 
     justifyContent: "center", 
-    marginBottom: 10, 
+    marginBottom: 12, 
     fontFamily: "IranSans",
   },
   errorInput: { borderColor: "red", borderWidth: 1 },
