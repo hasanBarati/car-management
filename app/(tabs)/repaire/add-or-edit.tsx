@@ -2,8 +2,9 @@ import React from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useRepaireFormActions } from "@/components/pages/repaire/useFormAction";
 import RepaireFormView from "@/components/pages/repaire/FormView";
+import URLs from "@/constants/Urls";
 
-const Add: React.FC = () => {
+const AddOrEditRepaire: React.FC = () => {
   const params = useLocalSearchParams();
   const router = useRouter();
 
@@ -15,9 +16,9 @@ const Add: React.FC = () => {
       control={control}
       errors={errors}
       onSubmit={handleSubmit(handleFormSubmit)}
-      onCancel={() => router.push("/repaire")}
+      onCancel={() => router.push(URLs.REPAIRE)}
     />
   );
 };
 
-export default Add;
+export default AddOrEditRepaire;

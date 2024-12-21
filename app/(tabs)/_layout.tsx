@@ -4,6 +4,7 @@ import PagesHeader from "@/components/PagesHeader";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { tintColorLight } from "@/constants/Colors";
+import URLs from "@/constants/Urls";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Tabs } from "expo-router";
 import React from "react";
@@ -96,7 +97,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="repaire/index"
+        name={URLs.REPAIRE_MENU}
         options={{
           href: null,
           header: () => (
@@ -108,25 +109,27 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="repaire/add"
+        name={URLs.ADD_OR_EDIT_REPAIRE}
         options={{
           href: null,
           header: () => (
             <PagesHeader
               image={require("@/assets/images/repaire.jpg")}
               title={"ثبت تعمیرات "}
+              back={URLs.REPAIRE_MENU}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="repaire/add-reapire-locataion"
+        name={URLs.REPAIRE_LOCATION}
         options={{
           href: null,
           header: () => (
             <PagesHeader
               image={require("@/assets/images/repaire.jpg")}
               title={"ذخیره تعمیرگاه "}
+              back={URLs.REPAIRE_MENU}
             />
           ),
         }}

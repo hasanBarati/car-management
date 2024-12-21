@@ -1,13 +1,14 @@
 import Back from "@/assets/icons/back";
 import Logo from "@/assets/icons/logo";
-import { useNavigation } from "expo-router";
+import { URLKeys } from "@/constants/Urls";
+import { useRouter, Href } from "expo-router";
 import React from "react";
 import {
   ImageBackground,
   ImageSourcePropType,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
@@ -15,11 +16,22 @@ import { ThemedView } from "./ThemedView";
 const PagesHeader = ({
   image,
   title,
+  back
 }: {
   image: ImageSourcePropType;
   title: string;
+  back?:URLKeys
 }) => {
-  const navigation = useNavigation();
+    
+  const router=useRouter()
+
+  const handleBack = () => {
+    if (back) {
+      router.push(`/${back}` as Href);
+    } else {
+      router.back();
+    }
+  };
   return (
     <ImageBackground
       source={image}
@@ -29,7 +41,7 @@ const PagesHeader = ({
       <ThemedView style={styles.cover}></ThemedView>
       <View style={styles.container}>
         <TouchableOpacity style={styles.leftIcon}>
-          <Back onPress={() => navigation.goBack()} />
+          <Back onPress={handleBack} />
         </TouchableOpacity>
         <ThemedText style={styles.title} type="title">
           {title}

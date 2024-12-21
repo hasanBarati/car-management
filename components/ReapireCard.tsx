@@ -1,5 +1,7 @@
 import { ThemedText } from "@/components/ThemedText";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import URLs  from "@/constants/Urls";
+
 import { CarRepairHistory } from "@/types/ndex";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -17,10 +19,10 @@ const RepaireCard = ({ item }: { item: CarRepairHistory }) => {
         </View>
         <View style={styles.cardHeaderDetail}>
           <IconSymbol name="delete" size={18} color="white" />
-          <TouchableHighlight onPress={() => router.push({pathname:"/repaire/add",params:item})}>
+          <TouchableHighlight onPress={() => router.push({pathname:`/${URLs.ADD_OR_EDIT_REPAIRE}`,params:item})}>
             <IconSymbol size={18} name="edit" color="white" />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => router.push({pathname:"/add",params:item})}>
+          <TouchableHighlight onPress={() => router.push({pathname: `/${URLs.REPAIRE_LOCATION}`,params:item})}>
             <IconSymbol size={18} name="enviromento" color="white" />
           </TouchableHighlight>
         </View>

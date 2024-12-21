@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Toast from "react-native-toast-message";
 import * as Yup from "yup";
 import { RepaireFormInputs } from "./FormView";
+import URLs  from "@/constants/Urls";
 
 
 const validationSchema = Yup.object({
@@ -15,7 +16,6 @@ const validationSchema = Yup.object({
   description: Yup.string().optional(),
   brand: Yup.string().optional(),
 });
-
 
 const defaultFormValues: RepaireFormInputs = {
   title: "",
@@ -37,17 +37,15 @@ export const useRepaireFormActions = (params: Partial<RepaireFormInputs>) => {
     defaultValues: defaultFormValues,
   });
 
-  const router=useRouter()
+  const router = useRouter();
   const handleFormSubmit = (data: RepaireFormInputs) => {
     console.log("Form Data:", data);
     Toast.show({
-        type: "success",
-        text1: "موفقیت",
-        text2: "اطلاعات با موفقیت ثبت شد",
-        // visibilityTime: 3000, // مدت زمان نمایش (۳ ثانیه)
-        // autoHide: true,       // بستن خودکار
-      });
-  //  router.push('/repaire/add-reapire-locataion')
+      type: "success",
+      visibilityTime: 3000,
+      autoHide: true,
+    });
+    router.push(`/${URLs.REPAIRE_LOCATION}`);
   };
 
   const resetForm = (params: Partial<RepaireFormInputs>) => {
@@ -57,14 +55,13 @@ export const useRepaireFormActions = (params: Partial<RepaireFormInputs>) => {
     });
   };
 
-
   useFocusEffect(
     useCallback(() => {
-      reset(params); 
+      reset(params);
       return () => {
-        reset(defaultFormValues); 
+        reset(defaultFormValues);
       };
-    }, [reset,params?.title])
+    }, [reset, params?.title])
   );
 
   return {

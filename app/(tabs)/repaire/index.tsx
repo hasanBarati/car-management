@@ -1,7 +1,7 @@
 import SearchInput from "@/components/form/SearchInput";
 import RepaireCard from "@/components/ReapireCard";
-import StatusCard from "@/components/StatusCard";
-import { CarRepairHistory, MaintenanceItem } from "@/types/ndex";
+import URLs from "@/constants/Urls";
+import { CarRepairHistory } from "@/types/ndex";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -29,7 +29,7 @@ const RepaireHistory = () => {
           contentContainerStyle={{ paddingBottom: 50 }}
         />
       </View>
-      <TouchableOpacity style={styles.fab} onPress={() => router.push("/repaire/add")}>
+      <TouchableOpacity style={styles.fab} onPress={() => router.push(`/${URLs.ADD_OR_EDIT_REPAIRE}`)}>
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>
