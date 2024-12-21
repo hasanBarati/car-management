@@ -1,19 +1,16 @@
 import React from "react";
-import { GestureResponderEvent } from "react-native";
 import Svg, { Circle, Defs, Image, Pattern, Rect, Use } from "react-native-svg";
 
-interface BackProps {
-  onPress: (event: GestureResponderEvent) => void;
-}
 
-export default function Back({ onPress }: BackProps) {
+
+export default function Back() {
   return (
     <Svg
       width="64"
       height="64"
       viewBox="0 0 64 64"
       fill="none"
-      onPress={onPress}
+ 
     >
       <Circle cx="34" cy="30" r="30" fill="#82857D" />
       <Rect width="64" height="64" fill="url(#pattern0_466_1391)" />

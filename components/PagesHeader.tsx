@@ -16,14 +16,13 @@ import { ThemedView } from "./ThemedView";
 const PagesHeader = ({
   image,
   title,
-  back
+  back,
 }: {
   image: ImageSourcePropType;
   title: string;
-  back?:URLKeys
+  back?: URLKeys;
 }) => {
-    
-  const router=useRouter()
+  const router = useRouter();
 
   const handleBack = () => {
     if (back) {
@@ -40,8 +39,8 @@ const PagesHeader = ({
     >
       <ThemedView style={styles.cover}></ThemedView>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.leftIcon}>
-          <Back onPress={handleBack} />
+        <TouchableOpacity onPress={handleBack} style={styles.leftIcon}>
+          <Back />
         </TouchableOpacity>
         <ThemedText style={styles.title} type="title">
           {title}

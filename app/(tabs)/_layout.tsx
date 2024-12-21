@@ -73,7 +73,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(reminders)/index"
+        name={URLs.REMINDERS_MENU}
         options={{
           href: null,
           header: () => (
@@ -85,7 +85,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(reminders)/add"
+        name={URLs.ADD_REMINDERS}
         options={{
           href: null,
           header: () => (
@@ -116,7 +116,7 @@ export default function TabLayout() {
             <PagesHeader
               image={require("@/assets/images/repaire.jpg")}
               title={"ثبت تعمیرات "}
-              back={URLs.REPAIRE_MENU}
+              back={URLs.REPAIRE}
             />
           ),
         }}
@@ -129,7 +129,7 @@ export default function TabLayout() {
             <PagesHeader
               image={require("@/assets/images/repaire.jpg")}
               title={"ذخیره تعمیرگاه "}
-              back={URLs.REPAIRE_MENU}
+              back={URLs.REPAIRE}
             />
           ),
         }}

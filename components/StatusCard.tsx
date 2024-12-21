@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
-import React from "react";
 import { ThemedText } from "@/components/ThemedText";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { MaintenanceItem } from "@/types/ndex";
 import { useRouter } from "expo-router";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
 const StatusCard = ({ item }: { item: MaintenanceItem }) => {
   const router=useRouter()
@@ -16,9 +16,9 @@ const StatusCard = ({ item }: { item: MaintenanceItem }) => {
         </View>
         <View style={styles.cardHeaderDetail}>
           <IconSymbol name="delete" size={18} color="white" />
-          <TouchableHighlight onPress={() => router.push({pathname:"/add",params:item})}>
+          {/* <TouchableHighlight onPress={() => router.push({pathname:`/${URLs.ADD_REMINDERS}`,params:item})}>
             <IconSymbol size={18} name="edit" color="white" />
-          </TouchableHighlight>
+          </TouchableHighlight> */}
         </View>
       </View>
       <View style={styles.cardContent}>

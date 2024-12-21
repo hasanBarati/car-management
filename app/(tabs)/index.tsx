@@ -109,7 +109,7 @@ const homeData = [
     subtitle: "تعمیرات، تعویض، بیمه، تایر در کیلومتر 50 هزار",
     image: require(`@/assets/images/calendar.png`),
     id: 4,
-    url:"/(reminders)"
+    url:"/reminders"
   },
   {
     title: "گزارشات مالی",

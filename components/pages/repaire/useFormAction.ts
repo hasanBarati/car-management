@@ -48,12 +48,6 @@ export const useRepaireFormActions = (params: Partial<RepaireFormInputs>) => {
     router.push(`/${URLs.REPAIRE_LOCATION}`);
   };
 
-  const resetForm = (params: Partial<RepaireFormInputs>) => {
-    reset({
-      ...defaultFormValues,
-      ...params,
-    });
-  };
 
   useFocusEffect(
     useCallback(() => {
@@ -68,7 +62,6 @@ export const useRepaireFormActions = (params: Partial<RepaireFormInputs>) => {
     control,
     errors,
     handleSubmit,
-    resetForm,
     handleFormSubmit,
   };
 };

@@ -1,5 +1,6 @@
 import SearchInput from "@/components/form/SearchInput";
 import StatusCard from "@/components/StatusCard";
+import URLs from "@/constants/Urls";
 import { MaintenanceItem } from "@/types/ndex";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -27,7 +28,7 @@ const Reminders = () => {
           contentContainerStyle={{ paddingBottom: 50 }}
         />
       </View>
-      <TouchableOpacity style={styles.fab} onPress={() => router.push("/add")}>
+      <TouchableOpacity style={styles.fab} onPress={() => router.push(`/${URLs.ADD_REMINDERS}`)}>
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>

@@ -16,7 +16,7 @@ const AddOrEditRepaire: React.FC = () => {
       control={control}
       errors={errors}
       onSubmit={handleSubmit(handleFormSubmit)}
-      onCancel={() => router.push(URLs.REPAIRE)}
+      onCancel={() => router.push(`/${URLs.REPAIRE}`)}
     />
   );
 };
