@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { SafeAreaView, StatusBar, StyleSheet, Text } from "react-native";
+import Toast from "react-native-toast-message";
+import { toastConfig } from "@/config/ToastConfig";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -30,20 +32,22 @@ export default function RootLayout() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+           
       <StatusBar backgroundColor={"black"} translucent={true} />
-      {/* <ScrollView> */}
+    
       {/* <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}> */}
       <ThemeProvider value={DarkTheme}>
+ 
       <Stack
           screenOptions={{
             headerShown: false, // Disable individual headers for screens
           }}
         >
-          {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
       </ThemeProvider>
-      {/* </ScrollView> */}
+      <Toast config={toastConfig} />
     </SafeAreaView>
   );
 }

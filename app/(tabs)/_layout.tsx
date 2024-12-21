@@ -1,14 +1,13 @@
-import Logo from "@/assets/icons/logo";
 import { HapticTab } from "@/components/HapticTab";
 import Header from "@/components/Header";
 import PagesHeader from "@/components/PagesHeader";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Colors, tintColorLight } from "@/constants/Colors";
+import { tintColorLight } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform, Text, View } from "react-native";
+import { Platform } from "react-native";
 // import Logo from "@/assets/icons/logo";
 
 export default function TabLayout() {
@@ -110,7 +109,7 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="repaire/add"
-        options={{ 
+        options={{
           href: null,
           header: () => (
             <PagesHeader

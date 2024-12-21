@@ -44,10 +44,10 @@ export const useRepaireFormActions = (params: Partial<RepaireFormInputs>) => {
         type: "success",
         text1: "موفقیت",
         text2: "اطلاعات با موفقیت ثبت شد",
-        visibilityTime: 3000, // مدت زمان نمایش (۳ ثانیه)
-        autoHide: true,       // بستن خودکار
+        // visibilityTime: 3000, // مدت زمان نمایش (۳ ثانیه)
+        // autoHide: true,       // بستن خودکار
       });
-//    router.push('/repaire/add-reapire-locataion')
+  //  router.push('/repaire/add-reapire-locataion')
   };
 
   const resetForm = (params: Partial<RepaireFormInputs>) => {
