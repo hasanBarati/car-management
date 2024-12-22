@@ -15,3 +15,14 @@ export type MaintenanceItem = {
     description: string;    
     brand?:string
   }
+
+ export  type IRoute = {
+    id:number
+    date: string; 
+    route: string; 
+    distance: string;
+    duration: string; 
+    fuelConsumption: string;
+    avgSpeed: string; 
+  };
+  

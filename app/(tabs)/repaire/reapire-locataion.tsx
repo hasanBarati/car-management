@@ -4,10 +4,10 @@ import MapScreen from "@/components/Map";
 import TextInputField from "@/components/form/TextInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "@/components/button/CustomButton";
-import { useLocalSearchParams } from "expo-router";
+
 
 const AddReapireLocation = () => {
-    const params=useLocalSearchParams()
+
   const {
     control,
     handleSubmit,
@@ -15,28 +15,12 @@ const AddReapireLocation = () => {
     setValue,
     formState: { errors },
   } = useForm({
-    // defaultValues: {
-    //     title:""
-    // }
   });
 
   const onSubmit = (data: any) => {
     console.log("Form Data:", data);
   };
-   useEffect(() => {
-    setValue("title",params.title)
-    // reset({
-    //     title: params.title[0] || "",
-    //     // type: params.type || "",
-    //     // date: params.date || "",
-    //     // mileage: params.mileage || "",
-    //     // reason: params.reason || "",
-    //     // cost: params.cost || "",
-    //     // brand: params.brand || "",
-    //     // description: params.description || "",
-    //     // invoiceImage: params.invoiceImage || null,
-    //   });
-   }, []);
+
   return (
     <View style={styles.container}>
       <TextInputField

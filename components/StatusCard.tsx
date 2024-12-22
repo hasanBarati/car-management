@@ -1,18 +1,30 @@
 import { ThemedText } from "@/components/ThemedText";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import { MaintenanceItem } from "@/types/ndex";
+import { IRoute, MaintenanceItem } from "@/types/ndex";
+import { convertDataToContent } from "@/utils";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { Children } from "react";
 import { StyleSheet, View } from "react-native";
 
-const StatusCard = ({ item }: { item: MaintenanceItem }) => {
-  const router=useRouter()
+type StatusCardProps<T> = {
+  item: T;
+  type?: string;
+};
+
+export type CardItem = IRoute | MaintenanceItem;
+
+const StatusCard = <T extends CardItem>({
+  item,
+  type = "status",
+}: StatusCardProps<T>) => {
+  const data = convertDataToContent(item, type);
+  const router = useRouter();
   return (
     <View style={styles.card}>
       <View style={styles.cardHeader}>
         <View style={styles.cardHeaderDetail}>
-          <View style={[styles.indicator, { backgroundColor: item.color }]} />
-          <ThemedText type="titleColor">{item.title}</ThemedText>
+          <View style={[styles.indicator, { backgroundColor: data?.color }]} />
+          <ThemedText type="titleColor">{data?.title}</ThemedText>
         </View>
         <View style={styles.cardHeaderDetail}>
           <IconSymbol name="delete" size={18} color="white" />
@@ -22,7 +34,16 @@ const StatusCard = ({ item }: { item: MaintenanceItem }) => {
         </View>
       </View>
       <View style={styles.cardContent}>
-        <ThemedText type="subtitle" style={styles.cardText}>
+        {Children.toArray(
+          data?.content?.map(({ label, value, wrapperCol = 12, className }) => {
+            return (
+              <ThemedText type="subtitle" style={styles.cardText}>
+                  {label}:{value}
+              </ThemedText>
+            );
+          })
+        )}
+        {/* <ThemedText type="subtitle" style={styles.cardText}>
           تاریخ سر رسید: {item.date}
         </ThemedText>
         <ThemedText type="subtitle" style={styles.cardText}>
@@ -30,7 +51,7 @@ const StatusCard = ({ item }: { item: MaintenanceItem }) => {
         </ThemedText>
         <ThemedText type="subtitle" style={styles.cardText}>
           وضعیت یادآور: {item.status}
-        </ThemedText>
+        </ThemedText> */}
       </View>
     </View>
   );
