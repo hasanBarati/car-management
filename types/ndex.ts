@@ -18,8 +18,8 @@ export type MaintenanceItem = {
 
  export  type IRoute = {
     id:number
+    title: string;  
     date: string; 
-    route: string; 
     distance: string;
     duration: string; 
     fuelConsumption: string;

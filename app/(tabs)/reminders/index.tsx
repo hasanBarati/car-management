@@ -1,5 +1,5 @@
+import Card from "@/components/Card";
 import SearchInput from "@/components/form/SearchInput";
-import StatusCard from "@/components/StatusCard";
 import URLs from "@/constants/Urls";
 import { MaintenanceItem } from "@/types/ndex";
 import { useRouter } from "expo-router";
@@ -9,12 +9,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 
 const Reminders = () => {
   const RenderItem = ({ item }: { item: MaintenanceItem }) => {
-    return <StatusCard item={item} />;
+    return <Card item={item} />;
   };
   const router = useRouter();
   return (
@@ -28,7 +28,10 @@ const Reminders = () => {
           contentContainerStyle={{ paddingBottom: 50 }}
         />
       </View>
-      <TouchableOpacity style={styles.fab} onPress={() => router.push(`/${URLs.ADD_REMINDERS}`)}>
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => router.push(`/${URLs.ADD_REMINDERS}`)}
+      >
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>

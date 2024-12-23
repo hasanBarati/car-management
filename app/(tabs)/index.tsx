@@ -103,6 +103,7 @@ const homeData = [
     subtitle: "مسیر تهران به شمال 200km مسافت طی شده",
     image: require(`@/assets/images/route.webp`),
     id: 3,
+    url:"/routes"
   },
   {
     title: "یادآورها",

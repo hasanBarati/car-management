@@ -13,7 +13,7 @@ type StatusCardProps<T> = {
 
 export type CardItem = IRoute | MaintenanceItem;
 
-const StatusCard = <T extends CardItem>({
+const Card = <T extends CardItem>({
   item,
   type = "status",
 }: StatusCardProps<T>) => {
@@ -23,8 +23,13 @@ const StatusCard = <T extends CardItem>({
     <View style={styles.card}>
       <View style={styles.cardHeader}>
         <View style={styles.cardHeaderDetail}>
-          <View style={[styles.indicator, { backgroundColor: data?.color }]} />
+          {type === "status" && (
+            <View
+              style={[styles.indicator, { backgroundColor: data?.color }]}
+            />
+          )}
           <ThemedText type="titleColor">{data?.title}</ThemedText>
+          <ThemedText >{data?.date}</ThemedText>
         </View>
         <View style={styles.cardHeaderDetail}>
           <IconSymbol name="delete" size={18} color="white" />
@@ -35,23 +40,14 @@ const StatusCard = <T extends CardItem>({
       </View>
       <View style={styles.cardContent}>
         {Children.toArray(
-          data?.content?.map(({ label, value, wrapperCol = 12, className }) => {
+          data?.content?.map(({ label, value,className }) => {
             return (
-              <ThemedText type="subtitle" style={styles.cardText}>
-                  {label}:{value}
+              <ThemedText type="subtitle" style={[styles.cardText,{...className}]}>
+                {label}:{value}
               </ThemedText>
             );
           })
         )}
-        {/* <ThemedText type="subtitle" style={styles.cardText}>
-          تاریخ سر رسید: {item.date}
-        </ThemedText>
-        <ThemedText type="subtitle" style={styles.cardText}>
-          کیلومتر باقی مانده: {item.remaining}
-        </ThemedText>
-        <ThemedText type="subtitle" style={styles.cardText}>
-          وضعیت یادآور: {item.status}
-        </ThemedText> */}
       </View>
     </View>
   );
@@ -65,6 +61,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     position: "relative",
     direction: "rtl",
+    
+  
   },
   cardHeader: {
     flexDirection: "row",
@@ -100,6 +98,8 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 4,
     width: "48%",
+    textAlign:"left"
+
   },
   cardActions: {
     flexDirection: "row",
@@ -109,4 +109,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StatusCard;
+export default Card;

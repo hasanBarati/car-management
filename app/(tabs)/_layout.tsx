@@ -134,6 +134,31 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name={URLs.ROUTES_MENU}
+        options={{
+          href: null,
+          header: () => (
+            <PagesHeader
+              image={require("@/assets/images/repaire.jpg")}
+              title={"مسیرهای طی شده "}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name={URLs.ADD_ROUTES}
+        options={{
+          href: null,
+          header: () => (
+            <PagesHeader
+              image={require("@/assets/images/repaire.jpg")}
+              title={" "}
+              back={URLs.REPAIRE}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

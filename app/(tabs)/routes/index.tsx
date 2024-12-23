@@ -1,5 +1,5 @@
 import SearchInput from "@/components/form/SearchInput";
-import StatusCard from "@/components/StatusCard";
+import Card from "@/components/Card";
 import URLs from "@/constants/Urls";
 import { IRoute, MaintenanceItem } from "@/types/ndex";
 import { useRouter } from "expo-router";
@@ -14,7 +14,7 @@ import {
 
 const Routes = () => {
   const RenderItem = ({ item }: { item: IRoute }) => {
-    return <StatusCard item={item} />;
+    return <Card item={item} type="route" />;
   };
   const router = useRouter();
   return (
@@ -24,7 +24,7 @@ const Routes = () => {
         <FlatList
           data={data}
           renderItem={({ item }) => <RenderItem item={item} />}
-          keyExtractor={(item) =>String(item.id) }
+          keyExtractor={(item) => String(item.id)}
           contentContainerStyle={{ paddingBottom: 50 }}
         />
       </View>
@@ -74,7 +74,7 @@ const data: IRoute[] = [
   {
     id: 1,
     date: "104/12/10",
-    route: "تهرانسر - افسریه",
+    title: "تهرانسر - افسریه",
     distance: "19 کیلومتر",
     duration: "40 دقیقه",
     fuelConsumption: "15 لیتر",
@@ -83,7 +83,7 @@ const data: IRoute[] = [
   {
     id: 2,
     date: "104/12/11",
-    route: "ولنجک - میدان آزادی",
+    title: "ولنجک - میدان آزادی",
     distance: "22 کیلومتر",
     duration: "50 دقیقه",
     fuelConsumption: "18 لیتر",
@@ -92,7 +92,7 @@ const data: IRoute[] = [
   {
     id: 3,
     date: "104/12/12",
-    route: "جردن - تجریش",
+    title: "جردن - تجریش",
     distance: "10 کیلومتر",
     duration: "30 دقیقه",
     fuelConsumption: "8 لیتر",
@@ -101,7 +101,7 @@ const data: IRoute[] = [
   {
     id: 4,
     date: "104/12/13",
-    route: "پیروزی - انقلاب",
+    title: "پیروزی - انقلاب",
     distance: "15 کیلومتر",
     duration: "35 دقیقه",
     fuelConsumption: "12 لیتر",
@@ -110,7 +110,7 @@ const data: IRoute[] = [
   {
     id: 5,
     date: "104/12/14",
-    route: "سعادت آباد - ونک",
+    title: "سعادت آباد - ونک",
     distance: "12 کیلومتر",
     duration: "25 دقیقه",
     fuelConsumption: "10 لیتر",
