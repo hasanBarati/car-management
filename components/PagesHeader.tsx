@@ -18,8 +18,8 @@ const PagesHeader = ({
   title,
   back,
 }: {
-  image: ImageSourcePropType;
-  title: string;
+  image?: ImageSourcePropType;
+  title?: string;
   back?: URLKeys;
 }) => {
   const router = useRouter();
@@ -34,7 +34,7 @@ const PagesHeader = ({
   return (
     <ImageBackground
       source={image}
-      style={styles.background}
+      style={image ?styles.background:''}
       resizeMode="cover"
     >
       <ThemedView style={styles.cover}></ThemedView>

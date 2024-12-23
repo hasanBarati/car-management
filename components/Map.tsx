@@ -1,7 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Alert } from "react-native";
-import MapView, { Marker, UrlTile } from "react-native-maps";
+import MapView, { Marker, UrlTile, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
+
+const darkMapStyle = [
+  {
+    elementType: 'geometry',
+    stylers: [{ color: '#242f3e' }],
+  },
+  {
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#746855' }],
+  },
+  {
+    elementType: 'labels.text.stroke',
+    stylers: [{ color: '#242f3e' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: [{ color: '#38414e' }],
+  },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [{ color: '#17263c' }],
+  },
+];
 
 const MapScreen = () => {
   const [location, setLocation] = useState<Location.LocationObjectCoords>();
@@ -27,6 +52,9 @@ const MapScreen = () => {
   return (
 
       <MapView
+      provider={PROVIDER_GOOGLE}
+      customMapStyle={darkMapStyle}
+      userInterfaceStyle="dark"
         style={styles.map}
         initialRegion={{
           latitude: 32.4279, 
@@ -34,6 +62,7 @@ const MapScreen = () => {
           latitudeDelta: 10,
           longitudeDelta: 10,
         }}
+  
         //   provider={MapView.PROVIDER_GOOGLE}
       >
         <Marker
@@ -54,7 +83,7 @@ const MapScreen = () => {
 
 const styles = StyleSheet.create({
 
-  map: { flex: 1 },
+  map: { flex: 1},
 });
 
 export default MapScreen;

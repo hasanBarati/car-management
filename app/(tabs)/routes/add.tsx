@@ -13,8 +13,8 @@ const ADDRoute = () => {
     useReminderFormActions();
 
   return (
-    <View style={styles.container}>
-      <MapScreen />;
+    <View style={styles.container} >
+      <MapScreen />
       <View style={styles.statsContainer}>
         <View style={styles.statsRow}>
           <ThemedText style={styles.statsText}>
@@ -39,20 +39,15 @@ const ADDRoute = () => {
       <TouchableOpacity style={styles.stopButton}>
         <ThemedText style={styles.stopButtonText}>توقف</ThemedText>
       </TouchableOpacity>
-      {/* Bottom Navigation */}
-      <View style={styles.bottomNavigation}>
-        <ThemedText style={styles.navText}>صفحه اصلی</ThemedText>
-        <ThemedText style={styles.navText}>تنظیمات</ThemedText>
-        <ThemedText style={styles.navText}>کاربر</ThemedText>
-        <ThemedText style={styles.navText}>تماس</ThemedText>
-      </View>
+   
+  
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#000" },
-  map: { flex: 3 },
+  container: { flex: 1 },
+
   statsContainer: { flex: 1, padding: 10, backgroundColor: "#333" },
   statsRow: {
     flexDirection: "row",
@@ -69,14 +64,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 50,
   },
-  stopButtonText: { color: "#fff", textAlign: "center", fontSize: 16 },
-  bottomNavigation: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    paddingVertical: 10,
-    backgroundColor: "#222",
-  },
-  navText: { color: "#fff", fontSize: 14 },
+  stopButtonText:{}
 });
 
 export default ADDRoute;
