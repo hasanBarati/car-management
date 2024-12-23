@@ -30,7 +30,7 @@ const Routes = () => {
       </View>
       <TouchableOpacity
         style={styles.fab}
-        onPress={() => router.push(`/${URLs.ADD_REMINDERS}`)}
+        onPress={() => router.push(`/${URLs.ADD_ROUTES}`)}
       >
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>

@@ -152,7 +152,7 @@ export default function TabLayout() {
           href: null,
           header: () => (
             <PagesHeader
-              image={require("@/assets/images/repaire.jpg")}
+              image={require("@/assets/images/route.webp")}
               title={" "}
               back={URLs.REPAIRE}
             />
