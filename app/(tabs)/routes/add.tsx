@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, View, Alert } from "react-native";
 import * as Location from "expo-location";
 import haversine from "haversine-distance";
-import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, Polyline, PROVIDER_GOOGLE, Region } from "react-native-maps";
 
 interface Coordinates {
   latitude: number;
@@ -25,21 +25,23 @@ const ADDRoute: React.FC = () => {
   const [averageSpeed, setAverageSpeed] = useState<number>(0);
   const [fuelConsumption, setFuelConsumption] = useState<number>(0);
   const [tracking, setTracking] = useState<boolean>(false);
-  const [region, setRegion] = useState(null);
+  const [region, setRegion] = useState<Region | null>(null);
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Permission to access location was denied');
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert("Permission to access location was denied");
         return;
       }
 
-      let { coords } = await Location.getCurrentPositionAsync({});
+      const { coords } = await Location.getCurrentPositionAsync({});
+
       setLocation({
-        latitude: coords.latitude,
-        longitude: coords.longitude,
+        coords: { latitude: coords.latitude, longitude: coords.longitude },
+        timestamp: Date.now(),
       });
+
       setRegion({
         latitude: coords.latitude,
         longitude: coords.longitude,
@@ -63,7 +65,7 @@ const ADDRoute: React.FC = () => {
     setStartTime(new Date());
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
-      alert("Location permission is required to track your route.");
+      Alert.alert("Location permission is required to track your route.");
       return;
     }
 
@@ -71,34 +73,40 @@ const ADDRoute: React.FC = () => {
       {
         accuracy: Location.Accuracy.High,
         timeInterval: 1000, // هر ثانیه یکبار
-        distanceInterval: 5, // هر 10 متر
+        distanceInterval: 1, // هر 1 متر
       },
       (newLocation: Location.LocationObject) => {
-        console.log("run watch user newLocationr",newLocation)
         const { coords } = newLocation;
-        if (location) {
-          const distance = haversine(
-            location.coords,
-            coords
-          ) / 1000; // مسافت به کیلومتر
+
+        if (location?.coords && coords.accuracy && coords.accuracy > 10) {
+          const distance = haversine(location.coords, coords);
+          if (distance < 1) {
+            return; // تغییرات کمتر از 1 متر را نادیده بگیر
+          }
+
           setTotalDistance((prev) => prev + distance);
           setFuelConsumption((prev) => prev + distance * 0.08); // مصرف بنزین تقریبی
-        }
-        console.log("run watch user",coords)
-        setLocation({ latitude: coords.latitude, longitude: coords.longitude });
-        setRoute((prev) => [...prev, coords]);
 
-    
-        const currentTime = new Date();
-        const timeElapsed = startTime
-          ? (currentTime.getTime() - startTime.getTime()) / 1000 / 60 // به دقیقه
-          : 0;
-        setElapsedTime(timeElapsed);
-        if (totalDistance > 0) {
-          setAverageSpeed(Number((totalDistance / (timeElapsed / 60)).toFixed(2))); // میانگین سرعت
+          setLocation({
+            coords: { latitude: coords.latitude, longitude: coords.longitude },
+            timestamp: newLocation.timestamp,
+          });
+
+          setRoute((prev) => [...prev, coords]);
+
+          const currentTime = new Date();
+          const timeElapsed = startTime
+            ? (currentTime.getTime() - startTime.getTime()) / 1000 / 60 // به دقیقه
+            : 0;
+          setElapsedTime(timeElapsed);
+
+          if (totalDistance > 0) {
+            setAverageSpeed(
+              Number((totalDistance / (timeElapsed / 60)).toFixed(2))
+            ); // میانگین سرعت
+          }
         }
       }
-
     );
   };
 
@@ -107,34 +115,10 @@ const ADDRoute: React.FC = () => {
     setStartTime(null);
   };
 
-  const calculateDistance = (startCoords, endCoords) => {
-    const startLat = startCoords.latitude;
-    const startLng = startCoords.longitude;
-    const endLat = endCoords.latitude;
-    const endLng = endCoords.longitude;
-
-    const earthRadius = 6371; // Radius of the Earth in kilometers
-    const dLat = degreesToRadians(endLat - startLat);
-    const dLng = degreesToRadians(endLng - startLng);
-
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(degreesToRadians(startLat)) *
-        Math.cos(degreesToRadians(endLat)) *
-        Math.sin(dLng / 2) *
-        Math.sin(dLng / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return earthRadius * c * 1000; // Distance in meters
-  };
-
-  const degreesToRadians = (degrees) => {
+  const degreesToRadians = (degrees: number): number => {
     return degrees * (Math.PI / 180);
   };
 
-  // console.log(route)
-  console.log(location)
   return (
     <View style={styles.container}>
       {region && (
@@ -145,20 +129,21 @@ const ADDRoute: React.FC = () => {
           showsUserLocation
         >
           {location && (
-            <Marker
-              coordinate={location}
-              title="موقعیت فعلی شما"
-            />
+            <Marker coordinate={location.coords} title="موقعیت فعلی شما" />
           )}
           {route.length > 1 && (
-            <Polyline coordinates={route} strokeColor="#00BFFF" strokeWidth={4} />
+            <Polyline
+              coordinates={route}
+              strokeColor="#00BFFF"
+              strokeWidth={4}
+            />
           )}
         </MapView>
       )}
       <View style={styles.statsContainer}>
         <View style={styles.statsRow}>
           <ThemedText style={styles.statsText}>
-            مسافت طی شده: {totalDistance.toFixed(2)} کیلومتر
+            مسافت طی شده: {totalDistance.toFixed(2)} متر
           </ThemedText>
           <ThemedText style={styles.statsText}>
             مدت زمان: {elapsedTime.toFixed(2)} دقیقه
@@ -173,7 +158,6 @@ const ADDRoute: React.FC = () => {
           </ThemedText>
         </View>
       </View>
-      {/* دکمه شروع/توقف */}
       <TouchableOpacity
         style={styles.stopButton}
         onPress={() => setTracking((prev) => !prev)}
@@ -192,7 +176,8 @@ const styles = StyleSheet.create({
   statsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 5,
+    marginBottom: 6,
+    marginTop: 10,
   },
   statsText: { color: "#fff", fontSize: 14 },
   stopButton: {
