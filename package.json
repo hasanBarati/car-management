@@ -17,6 +17,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.4",
     "@hookform/resolvers": "^3.9.1",
+    "@mapbox/polyline": "^1.2.1",
     "@react-native-picker/picker": "^2.10.2",
     "@react-navigation/bottom-tabs": "^7.0.0",
     "@react-navigation/native": "^7.0.0",
@@ -57,6 +58,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/jest": "^29.5.12",
+    "@types/mapbox__polyline": "^1.0.5",
     "@types/react": "~18.3.12",
     "@types/react-native": "^0.73.0",
     "@types/react-test-renderer": "^18.3.0",
