@@ -1,5 +1,6 @@
 {
   "expo": {
+    "permissions": ["LOCATION"],
     "name": "car-management",
     "slug": "car-management",
     "version": "1.0.0",
