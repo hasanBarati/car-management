@@ -1,6 +1,6 @@
 import polyline from "@mapbox/polyline";
 import React, { useCallback, useState, useEffect } from "react";
-import { Button, StyleSheet, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import * as Location from "expo-location";
 
@@ -15,6 +15,7 @@ const ADDRoute: React.FC = () => {
   const [mapKey, setMapKey] = useState<number>(0);
   const [route, setRoute] = useState<Coordinates[] | null>(null);
   const [steps, setSteps] = useState<any[]>([]);
+  const [distanceInfo, setDistanceInfo] = useState<string | null>(null);
   const [currentLocation, setCurrentLocation] = useState<Coordinates | null>(
     null
   );
@@ -49,31 +50,65 @@ const ADDRoute: React.FC = () => {
     }
 
     const apiKey = "service.d876c0452b1c4218b5282581ff1e72f0";
-    const url = `https://api.neshan.org/v5/direction?type=car&origin=${startLocation.latitude},${startLocation.longitude}&destination=${endLocation.latitude},${endLocation.longitude}`;
+    const directionUrl = `https://api.neshan.org/v5/direction?type=car&origin=${startLocation.latitude},${startLocation.longitude}&destination=${endLocation.latitude},${endLocation.longitude}`;
+    const distanceUrl = `https://api.neshan.org/v1/distance-matrix?type=car&origins=${startLocation.latitude},${startLocation.longitude}&destinations=${endLocation.latitude},${endLocation.longitude}`;
+    //  https://api.neshan.org/v1/distance-matrix?type=car&origins=36.3177579,59.5323219|36.337115,59.530621&destinations=36.35067,59.5451965|36.337005,59.53002
     const requestOptions = {
       method: "GET",
       headers: { "api-key": apiKey },
     };
 
+    // try {
+    //   const response = await fetch(url, requestOptions);
+    //   const data = await response.json();
+
+    //   if (data.routes?.[0]?.overview_polyline?.points) {
+    //     const decodedCoordinates = polyline
+    //       .decode(data.routes[0].overview_polyline.points)
+    //       .map(([latitude, longitude]) => ({
+    //         latitude,
+    //         longitude,
+    //       }));
+
+    //     setRoute(decodedCoordinates);
+    //   }
+
+    //   const routeSteps = data.routes?.[0]?.legs[0]?.steps || [];
+    //   setSteps(routeSteps);
+    // } catch (error) {
+    //   console.error("Error fetching route:", error);
+    // }
+
     try {
-      const response = await fetch(url, requestOptions);
-      const data = await response.json();
+      // Fetch direction data
+      const directionResponse = await fetch(directionUrl, requestOptions);
+      const directionData = await directionResponse.json();
 
-      if (data.routes?.[0]?.overview_polyline?.points) {
-        const decodedCoordinates = polyline
-          .decode(data.routes[0].overview_polyline.points)
-          .map(([latitude, longitude]) => ({
-            latitude,
-            longitude,
-          }));
-
-        setRoute(decodedCoordinates);
+      if (directionData.routes?.[0]?.overview_polyline?.points) {
+        const decodedRoute = polyline
+          .decode(directionData.routes[0].overview_polyline.points)
+          .map(([latitude, longitude]) => ({ latitude, longitude }));
+        setRoute(decodedRoute);
+        const routeSteps = directionData.routes?.[0]?.legs[0]?.steps || [];
+        setSteps(routeSteps);
       }
 
-      const routeSteps = data.routes?.[0]?.legs[0]?.steps || [];
-      setSteps(routeSteps);
+      // Fetch distance data
+      const distanceResponse = await fetch(distanceUrl, requestOptions);
+      // console.log(distanceResponse)
+      const distanceData = await distanceResponse.json();
+      console.log(distanceData);
+      if (
+        distanceData.rows?.[0]?.elements?.[0]?.distance?.text &&
+        distanceData.rows[0].elements[0].duration?.text
+      ) {
+        setDistanceInfo(
+          `مسافت: ${distanceData.rows[0].elements[0].distance.text}, زمان: ${distanceData.rows[0].elements[0].duration.text}`
+        );
+      }
     } catch (error) {
-      console.error("Error fetching route:", error);
+      console.error("Error fetching route or distance:", error);
+      alert("خطایی در دریافت اطلاعات رخ داده است.");
     }
   };
 
@@ -164,6 +199,7 @@ const ADDRoute: React.FC = () => {
           />
         )}
       </MapView>
+      {distanceInfo && <Text style={styles.info}>{distanceInfo}</Text>}
       <Button title="مسیریابی" onPress={handleRoute} />
       <Button title="تنظیم مجدد" onPress={resetMap} />
     </View>
@@ -173,6 +209,12 @@ const ADDRoute: React.FC = () => {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   map: { flex: 1 },
+  info: {
+    marginBottom: 10,
+    textAlign: "center",
+    fontSize: 16,
+    color: "white",
+  },
 });
 
 export default ADDRoute;
