@@ -52,32 +52,12 @@ const ADDRoute: React.FC = () => {
     const apiKey = "service.d876c0452b1c4218b5282581ff1e72f0";
     const directionUrl = `https://api.neshan.org/v5/direction?type=car&origin=${startLocation.latitude},${startLocation.longitude}&destination=${endLocation.latitude},${endLocation.longitude}`;
     const distanceUrl = `https://api.neshan.org/v1/distance-matrix?type=car&origins=${startLocation.latitude},${startLocation.longitude}&destinations=${endLocation.latitude},${endLocation.longitude}`;
-    //  https://api.neshan.org/v1/distance-matrix?type=car&origins=36.3177579,59.5323219|36.337115,59.530621&destinations=36.35067,59.5451965|36.337005,59.53002
     const requestOptions = {
       method: "GET",
       headers: { "api-key": apiKey },
     };
 
-    // try {
-    //   const response = await fetch(url, requestOptions);
-    //   const data = await response.json();
 
-    //   if (data.routes?.[0]?.overview_polyline?.points) {
-    //     const decodedCoordinates = polyline
-    //       .decode(data.routes[0].overview_polyline.points)
-    //       .map(([latitude, longitude]) => ({
-    //         latitude,
-    //         longitude,
-    //       }));
-
-    //     setRoute(decodedCoordinates);
-    //   }
-
-    //   const routeSteps = data.routes?.[0]?.legs[0]?.steps || [];
-    //   setSteps(routeSteps);
-    // } catch (error) {
-    //   console.error("Error fetching route:", error);
-    // }
 
     try {
       // Fetch direction data
