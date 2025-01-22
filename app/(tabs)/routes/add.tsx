@@ -3,6 +3,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import * as Location from "expo-location";
+import { supabase } from "@/config/supabaseClient";
 
 interface Coordinates {
   latitude: number;
@@ -130,6 +131,25 @@ const ADDRoute: React.FC = () => {
     getCurrentLocation();
   }, []);
 
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase
+        .from('notifications') 
+        .select();
+        console.log("data is",data)
+      if (error) {
+        console.error(error);
+      } else {
+        setData(data);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <View style={styles.container}>
       <MapView
@@ -198,3 +218,4 @@ const styles = StyleSheet.create({
 });
 
 export default ADDRoute;
+
