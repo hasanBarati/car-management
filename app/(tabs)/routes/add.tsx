@@ -4,6 +4,8 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import * as Location from "expo-location";
 import { supabase } from "@/config/supabaseClient";
+import { useQuery } from "@tanstack/react-query";
+import useGetRoutes from "@/service/route/hooks/useGetRoutes";
 
 interface Coordinates {
   latitude: number;
@@ -57,8 +59,6 @@ const ADDRoute: React.FC = () => {
       method: "GET",
       headers: { "api-key": apiKey },
     };
-
-
 
     try {
       // Fetch direction data
@@ -131,24 +131,26 @@ const ADDRoute: React.FC = () => {
     getCurrentLocation();
   }, []);
 
+  // const [data, setData] = useState([]);
 
-  const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const { data, error } = await supabase.from("notifications").select();
+  //     console.log("data is", data);
+  //     if (error) {
+  //       console.error(error);
+  //     } else {
+  //       setData(data);
+  //     }
+  //   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data, error } = await supabase
-        .from('notifications') 
-        .select();
-        console.log("data is",data)
-      if (error) {
-        console.error(error);
-      } else {
-        setData(data);
-      }
-    };
+  //   fetchData();
+  // }, []);
 
-    fetchData();
-  }, []);
+  const {data,isLoading}=useGetRoutes()
+
+  console.log("data is",data)
+
 
   return (
     <View style={styles.container}>
@@ -218,4 +220,3 @@ const styles = StyleSheet.create({
 });
 
 export default ADDRoute;
-
