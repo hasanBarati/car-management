@@ -16,7 +16,7 @@ export default function CustomButton({
     const buttonStyleType=type==="mainButton"?styles.mainButton:styles.secondaryButton
     const textStyleType=type==="mainButton"?styles.mainButtonText:styles.secondaryButtonText
   return (
-    <TouchableOpacity style={[styles.button,buttonStyleType]} onPress={onPress}>
+    <TouchableOpacity  style={[styles.button,buttonStyleType]} onPress={onPress}>
       <ThemedText style={textStyleType}>{text}</ThemedText>
     </TouchableOpacity>
   );

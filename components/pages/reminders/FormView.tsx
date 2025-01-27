@@ -21,6 +21,7 @@ interface ReminderFormViewProps {
   errors: FieldErrors<ReminderFormInputs>;
   onSubmit: () => void;
   onCancel: () => void;
+  isPending:boolean
 }
 
 const ReminderFormView: React.FC<ReminderFormViewProps> = ({
@@ -28,6 +29,7 @@ const ReminderFormView: React.FC<ReminderFormViewProps> = ({
   errors,
   onSubmit,
   onCancel,
+  isPending
 }) => {
   return (
     <ScrollView style={styles.container}>

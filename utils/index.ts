@@ -1,6 +1,7 @@
 import { CardItem } from "@/components/Card";
 import { IRoute, MaintenanceItem } from "@/types/ndex";
 import { ReactNode } from "react";
+import { toPersianDate } from "./functions";
 
 export interface CustomCardContent {
   label?: string;
@@ -26,20 +27,20 @@ export function convertDataToContent<Item extends CardItem>(
       content: [
         {
           label: "تاریخ سررسید",
-          value: statusItems.date,
+          value: toPersianDate(statusItems.created_at),
         },
         {
-          label: "کیلومتر باقی مانده",
-          value: statusItems.remaining,
+          label: "کیلومتر باقی مانده", 
+          value: statusItems.mileage + "km ",
         },
         {
           label: "وضعیت یادآور",
-          value: statusItems.status,
+          value: statusItems.status || 'فعال',
         },
       ],
 
       title: statusItems.title,
-      color: statusItems.color,
+      color: statusItems.color || "red",
     };
   }
 

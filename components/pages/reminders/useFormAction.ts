@@ -6,11 +6,12 @@ import * as Yup from "yup";
 import { ReminderFormInputs } from "./FormView";
 import { useFocusEffect } from "expo-router";
 import { useCallback } from "react";
+import useInsertReminder from "./useInsertData";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("عنوان یادآور الزامی است"),
   type: Yup.string().required("لطفا نوع یادآور را انتخاب کنید"),
-  date: Yup.string().required("تاریخ سررسید الزامی است"),
+  // date: Yup.string().required("تاریخ سررسید الزامی است"),
   mileage: Yup.number()
     .typeError("کیلومتر خودرو باید عدد باشد")
     .required("کیلومتر خودرو الزامی است"),
@@ -34,15 +35,9 @@ export const useReminderFormActions = () => {
     resolver: yupResolver(validationSchema),
     defaultValues: defaultFormValues,
   });
-
+  const {isPending ,muteReminder,data}=useInsertReminder()
   const handleFormSubmit = (data: ReminderFormInputs) => {
-
-    
-    Toast.show({
-      type: "success",
-      visibilityTime: 3000,
-      autoHide: true,
-    });
+    muteReminder(data)
   };
 
 
@@ -59,5 +54,6 @@ export const useReminderFormActions = () => {
     errors,
     handleSubmit,
     handleFormSubmit,
+    isPending
   };
 };

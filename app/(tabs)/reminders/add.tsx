@@ -6,7 +6,7 @@ import React from "react";
 
 const ADDReminder = () => {
   const router = useRouter();
-  const { control, errors, handleSubmit, handleFormSubmit } =
+  const { control, errors, handleSubmit, handleFormSubmit,isPending } =
     useReminderFormActions();
 
   return (
@@ -15,6 +15,7 @@ const ADDReminder = () => {
       errors={errors}
       onSubmit={handleSubmit(handleFormSubmit)}
       onCancel={() => router.push(`/${URLs.REMINDERS}`)}
+      isPending
     />
   );
 };

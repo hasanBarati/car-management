@@ -1,10 +1,12 @@
 export type MaintenanceItem = {
     id: string;
+    status: string;
+    color: string;
     title: string;
     date: string;
-    status: string;
-    remaining: string;
-    color: string;
+    type: string;
+    mileage: number;
+    notification?: boolean;
   };
   export type CarRepairHistory= {
     id?:number,

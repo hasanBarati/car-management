@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import SearchInput from "@/components/form/SearchInput";
+import useGetRiminder from "@/components/pages/reminders/useGetReminder";
 import URLs from "@/constants/Urls";
 import { MaintenanceItem } from "@/types/ndex";
 import { useRouter } from "expo-router";
@@ -13,6 +14,8 @@ import {
 } from "react-native";
 
 const Reminders = () => {
+  const {data}=useGetRiminder()
+
   const RenderItem = ({ item }: { item: MaintenanceItem }) => {
     return <Card item={item} />;
   };
@@ -70,53 +73,53 @@ const styles = StyleSheet.create({
 
 export default Reminders;
 
-const data: MaintenanceItem[] = [
-  {
-    id: "1",
-    title: "تعویض روغن",
-    date: "104/12/10",
-    status: "فعال",
-    remaining: "5km",
-    color: "orange",
-  },
-  {
-    id: "2",
-    title: "تعویض لنت جلو",
-    date: "104/12/10",
-    status: "فعال",
-    remaining: "5km",
-    color: "red",
-  },
-  {
-    id: "3",
-    title: "تعویض روغن",
-    date: "104/12/10",
-    status: "فعال",
-    remaining: "5km",
-    color: "orange",
-  },
-  {
-    id: "4",
-    title: "تعویض لنت جلو",
-    date: "104/12/10",
-    status: "فعال",
-    remaining: "5km",
-    color: "red",
-  },
-  {
-    id: "5",
-    title: "تعویض روغن",
-    date: "104/12/10",
-    status: "فعال",
-    remaining: "5km",
-    color: "orange",
-  },
-  {
-    id: "6",
-    title: "تعویض لنت جلو",
-    date: "104/12/10",
-    status: "فعال",
-    remaining: "5km",
-    color: "red",
-  },
-];
+// const data: MaintenanceItem[] = [
+//   {
+//     id: "1",
+//     title: "تعویض روغن",
+//     date: "104/12/10",
+//     status: "فعال",
+//     remaining: "5km",
+//     color: "orange",
+//   },
+//   {
+//     id: "2",
+//     title: "تعویض لنت جلو",
+//     date: "104/12/10",
+//     status: "فعال",
+//     remaining: "5km",
+//     color: "red",
+//   },
+//   {
+//     id: "3",
+//     title: "تعویض روغن",
+//     date: "104/12/10",
+//     status: "فعال",
+//     remaining: "5km",
+//     color: "orange",
+//   },
+//   {
+//     id: "4",
+//     title: "تعویض لنت جلو",
+//     date: "104/12/10",
+//     status: "فعال",
+//     remaining: "5km",
+//     color: "red",
+//   },
+//   {
+//     id: "5",
+//     title: "تعویض روغن",
+//     date: "104/12/10",
+//     status: "فعال",
+//     remaining: "5km",
+//     color: "orange",
+//   },
+//   {
+//     id: "6",
+//     title: "تعویض لنت جلو",
+//     date: "104/12/10",
+//     status: "فعال",
+//     remaining: "5km",
+//     color: "red",
+//   },
+// ];
