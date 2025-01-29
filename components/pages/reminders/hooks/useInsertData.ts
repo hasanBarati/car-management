@@ -1,6 +1,6 @@
 import { insertNotification } from "@/service/reminders";
 import { useMutation } from "@tanstack/react-query";
-import { ReminderFormInputs } from "./FormView";
+import { ReminderFormInputs } from "../FormView";
 import Toast from "react-native-toast-message";
 
 export default function useInsertReminder() {

@@ -4,11 +4,19 @@ import { IRoute, MaintenanceItem } from "@/types/ndex";
 import { convertDataToContent } from "@/utils";
 import { useRouter } from "expo-router";
 import React, { Children } from "react";
-import { StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, TouchableHighlight, View } from "react-native";
+
+export interface CardAction<T> {
+  icon: string;
+  onPress: (item: T) => void;
+  color?: string;
+  loading?: boolean;
+}
 
 type StatusCardProps<T> = {
   item: T;
   type?: string;
+  actions?: CardAction<T>[];
 };
 
 export type CardItem = IRoute | MaintenanceItem;
@@ -16,6 +24,7 @@ export type CardItem = IRoute | MaintenanceItem;
 const Card = <T extends CardItem>({
   item,
   type = "status",
+  actions=[]
 }: StatusCardProps<T>) => {
   const data = convertDataToContent(item, type);
   const router = useRouter();
@@ -29,10 +38,31 @@ const Card = <T extends CardItem>({
             />
           )}
           <ThemedText type="titleColor">{data?.title}</ThemedText>
-          <ThemedText >{data?.date}</ThemedText>
+          <ThemedText>{data?.date}</ThemedText>
         </View>
         <View style={styles.cardHeaderDetail}>
-          <IconSymbol name="delete" size={18} color="white" />
+          {actions.map((action, index) => (
+            <TouchableHighlight
+              key={index}
+              onPress={() => action.onPress(item)}
+              underlayColor="transparent"
+              disabled={action.loading}
+            >
+              {action.loading ? (
+                <ActivityIndicator
+                  size="small"
+                  color={action.color || "white"}
+                />
+              ) : (
+                <IconSymbol
+                  name={action.icon}
+                  size={18}
+                  color={action.color || "white"}
+                />
+              )}
+            </TouchableHighlight>
+          ))}
+          {/* <IconSymbol name="delete" size={18} color="white" /> */}
           {/* <TouchableHighlight onPress={() => router.push({pathname:`/${URLs.ADD_REMINDERS}`,params:item})}>
             <IconSymbol size={18} name="edit" color="white" />
           </TouchableHighlight> */}
@@ -40,9 +70,12 @@ const Card = <T extends CardItem>({
       </View>
       <View style={styles.cardContent}>
         {Children.toArray(
-          data?.content?.map(({ label, value,className }) => {
+          data?.content?.map(({ label, value, className }) => {
             return (
-              <ThemedText type="subtitle" style={[styles.cardText,{...className}]}>
+              <ThemedText
+                type="subtitle"
+                style={[styles.cardText, { ...className }]}
+              >
                 {label}:{value}
               </ThemedText>
             );
@@ -61,8 +94,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     position: "relative",
     direction: "rtl",
-    
-  
   },
   cardHeader: {
     flexDirection: "row",
@@ -98,8 +129,7 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 4,
     width: "48%",
-    textAlign:"left"
-
+    textAlign: "left",
   },
   cardActions: {
     flexDirection: "row",

@@ -1,12 +1,12 @@
 import ReminderFormView from "@/components/pages/reminders/FormView";
-import { useReminderFormActions } from "@/components/pages/reminders/useFormAction";
+import { useReminderFormActions } from "@/components/pages/reminders/hooks/useFormAction";
 import URLs from "@/constants/Urls";
 import { useRouter } from "expo-router";
 import React from "react";
 
 const ADDReminder = () => {
   const router = useRouter();
-  const { control, errors, handleSubmit, handleFormSubmit,isPending } =
+  const { control, errors, handleSubmit, handleFormSubmit, isPending } =
     useReminderFormActions();
 
   return (

@@ -1,6 +1,7 @@
-import Card from "@/components/Card";
+import Card, { CardAction, CardItem } from "@/components/Card";
 import SearchInput from "@/components/form/SearchInput";
-import useGetRiminder from "@/components/pages/reminders/useGetReminder";
+import { useDeleteRiminder } from "@/components/pages/reminders/hooks/useDelete";
+import useGetRiminder from "@/components/pages/reminders/hooks/useGetReminder";
 import URLs from "@/constants/Urls";
 import { MaintenanceItem } from "@/types/ndex";
 import { useRouter } from "expo-router";
@@ -14,10 +15,14 @@ import {
 } from "react-native";
 
 const Reminders = () => {
-  const {data}=useGetRiminder()
+  const { data } = useGetRiminder();
+  const {deleteMutate,isPending}=useDeleteRiminder()
 
+  const actions: CardAction<CardItem>[] = [
+    { icon: "delete", onPress: ()=>deleteMutate(), color: "red",loading:isPending },
+  ];
   const RenderItem = ({ item }: { item: MaintenanceItem }) => {
-    return <Card item={item} />;
+    return <Card item={item} actions={actions}  />;
   };
   const router = useRouter();
   return (

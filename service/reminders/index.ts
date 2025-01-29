@@ -10,7 +10,7 @@ export async function insertNotification (data)  {
     const { data} = await supabase.from("reminder").select("*");
     return data;
   }
-  export async function deleteNotifications(id:number) {
-    const { data} = await supabase.from("reminder").delete(id);
+  export async function deleteNotification(id:number) {
+    const { data} = await supabase.from("reminder").delete().eq('id', id);
     return data;
   }

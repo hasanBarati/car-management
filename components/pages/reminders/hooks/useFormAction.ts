@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Toast from "react-native-toast-message";
 import * as Yup from "yup";
 
-import { ReminderFormInputs } from "./FormView";
+import { ReminderFormInputs } from "../FormView";
 import { useFocusEffect } from "expo-router";
 import { useCallback } from "react";
 import useInsertReminder from "./useInsertData";
@@ -30,16 +30,15 @@ export const useReminderFormActions = () => {
     control,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<ReminderFormInputs>({
     resolver: yupResolver(validationSchema),
     defaultValues: defaultFormValues,
   });
-  const {isPending ,muteReminder,data}=useInsertReminder()
+  const { isPending, muteReminder, data } = useInsertReminder();
   const handleFormSubmit = (data: ReminderFormInputs) => {
-    muteReminder(data)
+    muteReminder(data);
   };
-
 
   useFocusEffect(
     useCallback(() => {
@@ -54,6 +53,6 @@ export const useReminderFormActions = () => {
     errors,
     handleSubmit,
     handleFormSubmit,
-    isPending
+    isPending,
   };
 };
