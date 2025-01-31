@@ -1,4 +1,6 @@
-import Card, { CardAction, CardItem } from "@/components/Card";
+import Card, { CardAction, CardItem } from "@/components/card";
+import EmptyCard from "@/components/card/empty";
+import CardLoading from "@/components/card/loading";
 import SearchInput from "@/components/form/SearchInput";
 import { useDeleteRiminder } from "@/components/pages/reminders/hooks/useDelete";
 import useGetRiminder from "@/components/pages/reminders/hooks/useGetReminder";
@@ -11,18 +13,24 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
 const Reminders = () => {
-  const { data } = useGetRiminder();
-  const {deleteMutate,isPending}=useDeleteRiminder()
+  const { data, isLoading } = useGetRiminder();
+  const { deleteMutate, isPending } = useDeleteRiminder();
 
   const actions: CardAction<CardItem>[] = [
-    { icon: "delete", onPress: ()=>deleteMutate(), color: "red",loading:isPending },
+    {
+      icon: "delete",
+      onPress: (item) => deleteMutate(+item.id),
+      color: "red",
+      loading: isPending,
+    },
   ];
+
   const RenderItem = ({ item }: { item: MaintenanceItem }) => {
-    return <Card item={item} actions={actions}  />;
+    return <Card item={item} actions={actions} />;
   };
   const router = useRouter();
   return (
@@ -33,6 +41,7 @@ const Reminders = () => {
           data={data}
           renderItem={({ item }) => <RenderItem item={item} />}
           keyExtractor={(item) => item.id}
+          ListEmptyComponent={isLoading ? CardLoading : EmptyCard}
           contentContainerStyle={{ paddingBottom: 50 }}
         />
       </View>

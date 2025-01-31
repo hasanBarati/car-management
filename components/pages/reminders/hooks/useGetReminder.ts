@@ -2,9 +2,9 @@ import { getNotifications } from "@/service/reminders";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useGetRiminder(){
-      const {data}=useQuery({
+      const {data,isLoading}=useQuery({
         queryKey:['reminder'],
-        queryFn:getNotifications
+        queryFn:getNotifications,
       })
-      return {data}
+      return {data,isLoading}
 }

@@ -7,7 +7,6 @@ import DatePicker from "react-native-jalali-persian-date-picker";
 interface CustomDatePickerProps {
   control: any;
   name: string;
-
   placeholder: string;
   rules?: object;
   errorMessage?: string;

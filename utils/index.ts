@@ -1,4 +1,4 @@
-import { CardItem } from "@/components/Card";
+import { CardItem } from "@/components/card";
 import { IRoute, MaintenanceItem } from "@/types/ndex";
 import { ReactNode } from "react";
 import { toPersianDate } from "./functions";
@@ -13,12 +13,12 @@ export interface CardData {
   content?: CustomCardContent[];
   title?: string;
   color?: string;
-  date?:string
+  date?: string;
 }
 
 export function convertDataToContent<Item extends CardItem>(
   item: Item,
-  type: string,
+  type: string
 ): CardData | undefined {
   if (type === "status") {
     const statusItems = item as MaintenanceItem;
@@ -30,12 +30,12 @@ export function convertDataToContent<Item extends CardItem>(
           value: toPersianDate(statusItems.created_at),
         },
         {
-          label: "کیلومتر باقی مانده", 
+          label: "کیلومتر باقی مانده",
           value: statusItems.mileage + "km ",
         },
         {
           label: "وضعیت یادآور",
-          value: statusItems.status || 'فعال',
+          value: statusItems.status || "فعال",
         },
       ],
 
@@ -56,7 +56,7 @@ export function convertDataToContent<Item extends CardItem>(
         {
           label: "مصرف بنزین",
           value: routeItems.fuelConsumption,
-          className:{float:"left"}
+          className: { float: "left" },
         },
         {
           label: "مدت زمان",
@@ -68,9 +68,8 @@ export function convertDataToContent<Item extends CardItem>(
         },
       ],
 
-      title: routeItems.title ,
-      date:routeItems.date
-  
+      title: routeItems.title,
+      date: routeItems.date,
     };
   }
 }

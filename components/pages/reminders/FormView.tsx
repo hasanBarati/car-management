@@ -53,13 +53,13 @@ const ReminderFormView: React.FC<ReminderFormViewProps> = ({
         errorMessage={errors.type?.message}
       />
 
-      <CustomDatePicker
+      {/* <CustomDatePicker
         control={control}
         name="date"
         placeholder=""
         errorMessage={errors.date?.message}
   
-      />
+      /> */}
       <TextInputField
         control={control}
         name="mileage"

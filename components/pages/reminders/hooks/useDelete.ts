@@ -4,11 +4,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 export function useDeleteRiminder(){
     const queryClient = useQueryClient();
     const {mutate,isPending}=useMutation({
-        mutationFn:async (id)=>{
+        mutationFn:async (id:number)=>{
            await deleteNotification(id)
         },
        onSuccess:()=>{
-            queryClient.invalidateQueries(['reminder']);
+            queryClient.invalidateQueries({ queryKey: ['reminder'] });
        } 
     })
 

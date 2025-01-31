@@ -4,7 +4,12 @@ import { IRoute, MaintenanceItem } from "@/types/ndex";
 import { convertDataToContent } from "@/utils";
 import { useRouter } from "expo-router";
 import React, { Children } from "react";
-import { ActivityIndicator, StyleSheet, TouchableHighlight, View } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  TouchableHighlight,
+  View,
+} from "react-native";
 
 export interface CardAction<T> {
   icon: string;
@@ -24,7 +29,7 @@ export type CardItem = IRoute | MaintenanceItem;
 const Card = <T extends CardItem>({
   item,
   type = "status",
-  actions=[]
+  actions = [],
 }: StatusCardProps<T>) => {
   const data = convertDataToContent(item, type);
   const router = useRouter();
@@ -62,10 +67,6 @@ const Card = <T extends CardItem>({
               )}
             </TouchableHighlight>
           ))}
-          {/* <IconSymbol name="delete" size={18} color="white" /> */}
-          {/* <TouchableHighlight onPress={() => router.push({pathname:`/${URLs.ADD_REMINDERS}`,params:item})}>
-            <IconSymbol size={18} name="edit" color="white" />
-          </TouchableHighlight> */}
         </View>
       </View>
       <View style={styles.cardContent}>

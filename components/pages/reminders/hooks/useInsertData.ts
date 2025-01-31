@@ -1,14 +1,16 @@
 import { insertNotification } from "@/service/reminders";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ReminderFormInputs } from "../FormView";
 import Toast from "react-native-toast-message";
 
 export default function useInsertReminder() {
-  const { isPending, mutate, data } = useMutation({
+  const queryClient=useQueryClient()
+  const { isPending, mutate, data,isSuccess } = useMutation({
     mutationFn: async (data: ReminderFormInputs) => {
       await insertNotification(data);
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['reminder'] });
       Toast.show({
         type: "success",
         visibilityTime: 3000,
@@ -20,5 +22,5 @@ export default function useInsertReminder() {
     },
   });
 
-  return { isPending, muteReminder: mutate, data };
+  return { isPending, muteReminder: mutate, data,isSuccess };
 }

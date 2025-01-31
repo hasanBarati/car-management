@@ -1,5 +1,5 @@
 import SearchInput from "@/components/form/SearchInput";
-import Card from "@/components/Card";
+import Card from "@/components/card";
 import URLs from "@/constants/Urls";
 import { IRoute, MaintenanceItem } from "@/types/ndex";
 import { useRouter } from "expo-router";
