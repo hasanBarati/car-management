@@ -6,7 +6,7 @@ export type MaintenanceItem = {
     date: string;
     type: string;
     mileage: number;
-    notification?: boolean;
+    notification: boolean;
   };
   export type CarRepairHistory= {
     id?:number,

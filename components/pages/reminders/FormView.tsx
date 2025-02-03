@@ -9,7 +9,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 export interface ReminderFormInputs {
   title: string;
-  date: string;
+  // date: string;
   type: string;
   mileage: number;
   notification?: boolean;

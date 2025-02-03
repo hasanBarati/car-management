@@ -17,13 +17,13 @@ const validationSchema = Yup.object().shape({
 
 const defaultFormValues: ReminderFormInputs = {
   title: "",
-  date: "",
   type: "",
   mileage: 0,
   notification: false,
 };
 
 export const useReminderFormActions = () => {
+  
   const {
     control,
     handleSubmit,

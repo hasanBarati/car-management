@@ -1,13 +1,14 @@
 import React from "react";
-import {
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    View
-} from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import { IconSymbol } from "../ui/IconSymbol";
 
-const SearchInput = () => {
+const SearchInput = ({
+  value,
+  onChangeText,
+}: {
+  value: string;
+  onChangeText: (text: string) => void;
+}) => {
   return (
     <View style={styles.searchBar}>
       <TouchableOpacity style={styles.searchIcon}>
@@ -21,6 +22,8 @@ const SearchInput = () => {
         showSoftInputOnFocus
         inputMode="text"
         keyboardType="default"
+        value={value}
+        onChangeText={onChangeText}
       />
     </View>
   );
